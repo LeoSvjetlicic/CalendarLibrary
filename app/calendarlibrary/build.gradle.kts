@@ -52,5 +52,4 @@ dependencies {
     debugImplementation(libs.ui.test.manifest)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.lingver)
 }
