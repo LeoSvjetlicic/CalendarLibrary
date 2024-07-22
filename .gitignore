@@ -1,8 +1,8 @@
 /build
 build
+/.gradle
 .gradle
 .gradle/
-.idea
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
