@@ -15,7 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.example.library.ui.theme.LibraryTheme
 import sample.example.app.guide.data.CalendarDayViewState
-import sample.example.app.guide.ui.ExampleCalendarDay
+import sample.example.app.guide.ui.ExampleBaseCalendarDay
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,13 +35,13 @@ class MainActivity : ComponentActivity() {
                             .padding(innerPadding)
                             .fillMaxSize()
                     ) {
-                        ExampleCalendarDay(
+                        ExampleBaseCalendarDay(
                             modifier = Modifier,
                             viewState = viewState,
                         ) {
                             viewState = viewState.copy(isSelected = !viewState.isSelected)
                         }
-                        ExampleCalendarDay(
+                        ExampleBaseCalendarDay(
                             modifier = Modifier,
                             viewState = viewState2,
                         ) {

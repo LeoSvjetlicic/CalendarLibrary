@@ -19,14 +19,16 @@ import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import sample.example.app.guide.data.CalendarDayViewState
 import sample.example.app.guide.ui.base.CalendarDay
 
 @Composable
-fun ExampleCalendarDay(
+fun ExampleBaseCalendarDay(
     viewState: CalendarDayViewState,
     modifier: Modifier = Modifier,
+    indicatorColor: Color = Red,
     textColor: Color = Black,
     selectedBackgroundColor: Color = Cyan,
     defaultBackgroundColor: Color = Transparent,
@@ -71,29 +73,29 @@ fun ExampleCalendarDay(
         },
         bottomElement = { bottomElementModifier ->
             if (viewState.isToday) {
-                RedIndicator(modifier = bottomElementModifier, isVertical = true)
+                RedIndicator(modifier = bottomElementModifier, indicatorColor, isVertical = true)
             }
         },
         topElement = { topElementModifier ->
             if (viewState.isToday) {
-                RedIndicator(modifier = topElementModifier, isVertical = true)
+                RedIndicator(modifier = topElementModifier, indicatorColor, isVertical = true)
             }
         },
         trailingElement = { trailingElementModifier ->
             if (viewState.isToday) {
-                RedIndicator(modifier = trailingElementModifier, isVertical = false)
+                RedIndicator(modifier = trailingElementModifier, indicatorColor, isVertical = false)
             }
         },
         leadingElement = { leadingElementModifier ->
             if (viewState.isToday) {
-                RedIndicator(modifier = leadingElementModifier, isVertical = false)
+                RedIndicator(modifier = leadingElementModifier, indicatorColor, isVertical = false)
             }
         },
     )
 }
 
 @Composable
-private fun RedIndicator(modifier: Modifier, isVertical: Boolean) {
+private fun RedIndicator(modifier: Modifier, color: Color, isVertical: Boolean) {
     Spacer(
         modifier = modifier
             .clip(
@@ -110,7 +112,13 @@ private fun RedIndicator(modifier: Modifier, isVertical: Boolean) {
                         .height(10.dp)
                 }
             )
-            .background(Red)
+            .background(color)
     )
+}
+
+@Preview
+@Composable
+private fun adfac() {
+    ExampleBaseCalendarDay(viewState = CalendarDayViewState(1, true, true, true)){}
 }
 

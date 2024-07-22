@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import sample.example.app.guide.data.CalendarDayViewState
-import sample.example.app.guide.ui.ExampleCalendarDay
+import sample.example.app.guide.ui.ExampleBaseCalendarDay
 
 @Composable
 fun CalendarDay(
@@ -14,7 +14,7 @@ fun CalendarDay(
     onClick: () -> Unit,
     modifier: Modifier,
     content: @Composable BoxScope.(Modifier) -> Unit = {
-        ExampleCalendarDay(viewState = viewState, onClick = onClick)
+        ExampleBaseCalendarDay(viewState = viewState, onClick = onClick)
     },
     leadingElement: @Composable BoxScope.(Modifier) -> Unit = {},
     trailingElement: @Composable BoxScope.(Modifier) -> Unit = {},
