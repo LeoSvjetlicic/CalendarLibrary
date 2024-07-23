@@ -1,7 +1,7 @@
-package sample.example.app.guide.utils
+package com.example.calendarlibrary.utils
 
-import sample.example.app.guide.data.CalendarDayViewState
-import sample.example.app.guide.data.CalendarViewState
+import com.example.calendarlibrary.data.CalendarDayViewState
+import com.example.calendarlibrary.data.CalendarViewState
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.Month

@@ -16,6 +16,7 @@ composeMaterialCore = "1.3.1"
 material3Android = "1.2.1"
 navigationCompose = "2.7.7"
 lingver = "1.3.0"
+junitKtx = "1.2.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -46,6 +47,7 @@ ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 
 lingver = { group = "com.github.YarikSOffice", name = "lingver", version.ref = "lingver" }
+androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -1,4 +1,4 @@
-package sample.example.app.guide.data
+package com.example.calendarlibrary.data
 
 data class CalendarDayViewState(
     val value: Int,

@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "sample.example.app.guide"
+    namespace = "com.example.calendarlibrary"
     compileSdk = 34
 
     defaultConfig {
@@ -23,12 +23,12 @@ android {
             )
         }
     }
+    buildFeatures {
+        compose = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    buildFeatures {
-        compose = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.2"
@@ -41,6 +41,7 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx.v283)
+    implementation(libs.androidx.junit.ktx)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
     val composeBom: Dependency = platform("androidx.compose:compose-bom:2022.10.00")
     implementation(composeBom)
@@ -48,9 +49,6 @@ dependencies {
     implementation(libs.ui)
     implementation(libs.androidx.material)
     implementation(libs.ui.tooling.preview)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
     implementation(libs.androidx.activity.compose)

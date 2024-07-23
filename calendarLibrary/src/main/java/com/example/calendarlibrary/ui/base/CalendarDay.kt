@@ -5,8 +5,8 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import sample.example.app.guide.data.CalendarDayViewState
-import sample.example.app.guide.ui.ExampleBaseCalendarDay
+import com.example.calendarlibrary.data.CalendarDayViewState
+import com.example.calendarlibrary.ui.ExampleBaseCalendarDay
 
 @Composable
 fun CalendarDay(
