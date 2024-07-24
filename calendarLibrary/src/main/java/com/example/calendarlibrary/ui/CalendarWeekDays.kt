@@ -1,4 +1,4 @@
-package sample.example.app.guide.ui.base
+package com.example.calendarlibrary.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
