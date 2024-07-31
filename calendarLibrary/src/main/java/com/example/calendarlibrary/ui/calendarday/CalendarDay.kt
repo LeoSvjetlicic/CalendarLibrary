@@ -1,9 +1,7 @@
-package com.example.calendarlibrary.ui
+package com.example.calendarlibrary.ui.calendarday
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.calendarlibrary.data.CalendarDayViewState
-import com.example.calendarlibrary.ui.calendarday.BaseCalendarDay
 
 @Composable
 fun CalendarDay(

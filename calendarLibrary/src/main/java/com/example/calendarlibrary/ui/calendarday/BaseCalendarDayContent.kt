@@ -12,7 +12,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.unit.dp
-import com.example.calendarlibrary.data.CalendarDayViewState
 import com.example.calendarlibrary.ui.colors.Indigo
 
 

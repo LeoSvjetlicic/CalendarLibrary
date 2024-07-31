@@ -1,7 +1,7 @@
 package com.example.calendarlibrary.utils
 
-import com.example.calendarlibrary.data.CalendarDayViewState
-import com.example.calendarlibrary.data.CalendarViewState
+import com.example.calendarlibrary.ui.calendarday.CalendarDayViewState
+import com.example.calendarlibrary.ui.calendar.CalendarViewState
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.Month

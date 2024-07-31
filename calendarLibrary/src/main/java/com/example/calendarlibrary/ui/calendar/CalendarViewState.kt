@@ -1,4 +1,6 @@
-package com.example.calendarlibrary.data
+package com.example.calendarlibrary.ui.calendar
+
+import com.example.calendarlibrary.ui.calendarday.CalendarDayViewState
 
 data class CalendarViewState(
     val month: String,

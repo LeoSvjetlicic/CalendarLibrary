@@ -12,8 +12,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.example.calendarlibrary.data.CalendarDayViewState
-import com.example.calendarlibrary.ui.CalendarDay
+import com.example.calendarlibrary.ui.calendarday.CalendarDayViewState
+import com.example.calendarlibrary.ui.calendarday.CalendarDay
 import com.example.library.ui.theme.LibraryTheme
 
 class MainActivity : ComponentActivity() {
