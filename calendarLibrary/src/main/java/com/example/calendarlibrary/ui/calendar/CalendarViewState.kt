@@ -1,10 +1,11 @@
 package com.example.calendarlibrary.ui.calendar
 
-import com.example.calendarlibrary.ui.calendarday.CalendarDayViewState
+import com.example.calendarlibrary.ui.calendarday.CalendarDaysViewState
+import com.example.calendarlibrary.ui.calendarheader.CalendarHeaderViewState
+import com.example.calendarlibrary.ui.calendarweekdays.CalendarWeekDaysViewState
 
 data class CalendarViewState(
-    val month: String,
-    val year: Int,
-    val daysOfWeek: List<String>,
-    val dates: List<List<CalendarDayViewState>>
+    val headerViewState: CalendarHeaderViewState,
+    val weekDaysViewState: CalendarWeekDaysViewState,
+    val daysViewState: CalendarDaysViewState
 )

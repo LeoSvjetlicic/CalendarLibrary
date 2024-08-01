@@ -50,7 +50,6 @@ fun BaseCalendarHeader(
         }
         content()
         Row {
-
             firstTrailingContent()
             secondTrailingContent()
         }

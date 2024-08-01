@@ -2,6 +2,8 @@ package com.example.calendarlibrary.ui.calendarweekdays
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 
 @Composable
 fun CalendarWeekDays(
@@ -19,5 +21,9 @@ internal fun DefaultCalendarWeekDays(
     viewState: CalendarWeekDaysViewState,
     modifier: Modifier = Modifier
 ) {
-    BaseCalendarWeekDays(viewState = viewState, modifier = modifier)
+    BaseCalendarWeekDays(
+        viewState = viewState,
+        modifier = modifier,
+        textStyle = TextStyle.Default.copy(color = Color.White)
+    )
 }

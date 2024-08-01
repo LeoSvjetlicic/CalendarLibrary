@@ -1,4 +1,4 @@
-package com.example.calendarlibrary.ui.calendarday
+package com.example.calendarlibrary.ui.calendarday.singleday
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.BoxScope

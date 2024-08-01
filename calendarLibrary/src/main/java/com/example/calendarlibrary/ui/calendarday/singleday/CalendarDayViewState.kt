@@ -1,4 +1,4 @@
-package com.example.calendarlibrary.ui.calendarday
+package com.example.calendarlibrary.ui.calendarday.singleday
 
 data class CalendarDayViewState(
     val value: Int,

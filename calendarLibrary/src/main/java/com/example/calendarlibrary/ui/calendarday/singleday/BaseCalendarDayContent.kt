@@ -1,4 +1,4 @@
-package com.example.calendarlibrary.ui.calendarday
+package com.example.calendarlibrary.ui.calendarday.singleday
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,21 +22,21 @@ fun BaseCalendarDayContent(
     selectedBackgroundColor: Color = Indigo,
     unselectedBackgroundColor: Color = Transparent,
     content: @Composable BoxScope.() -> Unit = {
-        DefaultCalendarDayTextContent(
+        DefaultCalendarDayContent(
             viewState = viewState,
         )
     },
     indicator: @Composable BoxScope.() -> Unit = {
         DefaultCalendarDayIndicator()
     },
-    onClick: () -> Unit
+    onClick: (Int) -> Unit
 ) {
     Box(
         modifier = modifier
             .clip(CircleShape)
             .then(
                 if (viewState.currentMonth) {
-                    Modifier.clickable { onClick() }
+                    Modifier.clickable { onClick(viewState.value) }
                 } else {
                     Modifier
                 }
@@ -59,7 +59,7 @@ fun BaseCalendarDayContent(
 
 
 @Composable
-internal fun BoxScope.DefaultCalendarDayTextContent(
+internal fun BoxScope.DefaultCalendarDayContent(
     viewState: CalendarDayViewState,
     modifier: Modifier = Modifier,
     content: @Composable BoxScope.() -> Unit = {

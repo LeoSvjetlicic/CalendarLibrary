@@ -1,4 +1,4 @@
-package com.example.calendarlibrary.ui.calendarday
+package com.example.calendarlibrary.ui.calendarday.singleday
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -8,15 +8,15 @@ import androidx.compose.ui.Modifier
 @Composable
 fun BaseCalendarDay(
     viewState: CalendarDayViewState,
-    onClick: () -> Unit,
+    onClick: (Int) -> Unit,
+    modifier: Modifier = Modifier,
     content: @Composable BoxScope.() -> Unit = {
-        DefaultCalendarDayTextContent(
+        DefaultCalendarDayContent(
             viewState = viewState,
             onClick = onClick
         )
     },
-    helperContent: @Composable BoxScope.() -> Unit = {},
-    modifier: Modifier = Modifier,
+    helperContent: @Composable BoxScope.() -> Unit = {}
 ) {
     Box(
         modifier = modifier
@@ -27,9 +27,9 @@ fun BaseCalendarDay(
 }
 
 @Composable
-internal fun DefaultCalendarDayTextContent(
+internal fun DefaultCalendarDayContent(
     viewState: CalendarDayViewState,
-    onClick: () -> Unit
+    onClick: (Int) -> Unit
 ) {
     BaseCalendarDayContent(
         viewState = viewState,

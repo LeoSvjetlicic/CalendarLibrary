@@ -1,4 +1,4 @@
-package com.example.calendarlibrary.ui.calendarday
+package com.example.calendarlibrary.ui.calendarday.singleday
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -6,7 +6,7 @@ import androidx.compose.ui.Modifier
 @Composable
 fun CalendarDay(
     viewState: CalendarDayViewState,
-    onClick: () -> Unit,
+    onClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit = {
         DefaultCalendarDay(viewState = viewState, onClick = onClick, modifier = modifier)
@@ -19,7 +19,7 @@ fun CalendarDay(
 internal fun DefaultCalendarDay(
     viewState: CalendarDayViewState,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit
+    onClick: (Int) -> Unit
 ) {
     BaseCalendarDay(viewState = viewState, modifier = modifier, onClick = onClick)
 }

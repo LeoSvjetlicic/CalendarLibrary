@@ -1,4 +1,4 @@
-package com.example.calendarlibrary.ui.calendarday
+package com.example.calendarlibrary.ui.calendarday.singleday
 
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.padding
@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.LightGray
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -23,7 +22,7 @@ fun BoxScope.BaseCalendarDayTextContent(
     viewState: CalendarDayViewState,
     modifier: Modifier = Modifier,
     selectedTextColor: Color = White,
-    unselectedTextColor: Color = LightGray,
+    unselectedTextColor: Color = White,
     textPadding: Dp = 6.dp,
     fontSize: TextUnit = TextUnit.Unspecified,
     fontStyle: FontStyle? = null,
