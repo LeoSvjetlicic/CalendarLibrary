@@ -1,78 +1,153 @@
 package com.example.library
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import com.example.calendarlibrary.ui.calendar.Calendar
+import com.example.calendarlibrary.ui.calendarday.CalendarDays
+import com.example.calendarlibrary.ui.calendarday.CalendarDaysRow
+import com.example.calendarlibrary.ui.calendarday.singleday.BaseCalendarDay
+import com.example.calendarlibrary.ui.calendarday.singleday.BaseCalendarDayContent
+import com.example.calendarlibrary.ui.calendarday.singleday.BaseCalendarDayTextContent
 import com.example.calendarlibrary.ui.calendarday.singleday.CalendarDay
-import com.example.calendarlibrary.ui.calendarday.singleday.CalendarDayViewState
-import com.example.calendarlibrary.ui.calendarheader.CalendarHeader
-import com.example.calendarlibrary.ui.calendarheader.CalendarHeaderViewState
+import com.example.calendarlibrary.ui.calendarweekdays.CalendarWeekDays
 import com.example.calendarlibrary.utils.CalendarHelper
 import com.example.library.ui.theme.LibraryTheme
-import java.util.Locale
+import java.time.DayOfWeek
 
 class MainActivity : ComponentActivity() {
-    val helperUS = CalendarHelper(Locale.US)
-    val helperUK = CalendarHelper(Locale.UK)
+    val helperUS = CalendarHelper(
+        listOf(
+            DayOfWeek.SUNDAY,
+            DayOfWeek.MONDAY,
+            DayOfWeek.TUESDAY,
+            DayOfWeek.WEDNESDAY,
+            DayOfWeek.THURSDAY,
+            DayOfWeek.FRIDAY,
+            DayOfWeek.SATURDAY,
+        )
+    )
+    val helperUK = CalendarHelper(
+        listOf(
+            DayOfWeek.MONDAY,
+            DayOfWeek.TUESDAY,
+            DayOfWeek.WEDNESDAY,
+            DayOfWeek.THURSDAY,
+            DayOfWeek.FRIDAY,
+            DayOfWeek.SATURDAY,
+            DayOfWeek.SUNDAY
+        )
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("adlkfnadf",helperUK.getDaysOfWeekList().toString())
-        Log.d("adlkfnadf",helperUS.getDaysOfWeekList().toString())
         setContent {
             LibraryTheme {
+                LazyColumn {
+                    item {
+                        val viewState1 = helperUK.generateCalendarViewState()
+                        Calendar(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(12.dp)
+                                .clip(RoundedCornerShape(12.dp))
+                                .background(Color.DarkGray)
+                                .padding(8.dp),
+                            viewState = helperUK.generateCalendarViewState(),
+                            onHeaderAction = {},
+                            weekDays = {
+                                Column {
+                                    Spacer(
+                                        modifier = Modifier
+                                            .height(2.dp)
+                                            .clip(CircleShape)
+                                            .padding(horizontal = 14.dp)
+                                            .fillMaxWidth()
+                                            .background(Color.Black)
+                                    )
+                                    CalendarWeekDays(
+                                        viewState = viewState1.weekDaysViewState,
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(vertical = 8.dp)
+                                    )
+                                    Spacer(
+                                        modifier = Modifier
+                                            .height(2.dp)
+                                            .clip(CircleShape)
+                                            .padding(horizontal = 14.dp)
+                                            .fillMaxWidth()
+                                            .background(Color.Black)
+                                    )
+                                }
+                            },
+                            onDayClick = {})
+                        Spacer(modifier = Modifier.height(30.dp))
+                        val viewState2 = helperUS.generateCalendarViewState()
+                        Calendar(
+                            modifier = Modifier
+                                .padding(50.dp)
+                                .clip(RoundedCornerShape(8.dp))
+                                .fillMaxWidth()
+                                .background(Color.Black),
+                            viewState = viewState2,
+                            days = {
+                                CalendarDays(
+                                    viewState = viewState2.daysViewState,
+                                    modifier = Modifier,
+                                    onClick = {},
+                                    dayContent = { dayContent ->
+                                        CalendarDaysRow(
+                                            viewState = dayContent,
+                                            onClick = {},
+                                            day = { rowsContent ->
+                                                CalendarDay(
+                                                    viewState = rowsContent,
+                                                    onClick = {},
+                                                    content = {
+                                                        BaseCalendarDay(
+                                                            modifier = Modifier.weight(1f),
+                                                            viewState = rowsContent,
+                                                            content = {
+                                                                BaseCalendarDayContent(
+                                                                    viewState = rowsContent,
+                                                                    onClick = {},
+                                                                    content = {
+                                                                        BaseCalendarDayTextContent(
+                                                                            viewState = rowsContent,
+                                                                            notCurrentMonthTextColor = Color.LightGray.copy(
+                                                                                alpha = 0.2f
+                                                                            ),
+                                                                        )
+                                                                    }
+                                                                )
+                                                            },
+                                                            onClick = {}
+                                                        )
+                                                    }
+                                                )
+                                            }
+                                        )
+                                    }
+                                )
+                            },
+                            onHeaderAction = {},
+                            onDayClick = {})
+                    }
+                }
             }
-        }
-    }
-}
-
-@Preview
-@Composable
-private fun afdc() {
-    Column {
-        var viewState1 by remember {
-            mutableStateOf(CalendarDayViewState(12, false, true, true))
-        }
-        var viewState2 by remember {
-            mutableStateOf(CalendarDayViewState(12, false, true, false))
-        }
-        var viewState3 by remember {
-            mutableStateOf(CalendarDayViewState(12, false, false, true))
-        }
-        CalendarHeader(
-            modifier = Modifier.fillMaxWidth(),
-            viewState = CalendarHeaderViewState("June 2024"),
-            onAction = {})
-
-        Row {
-            CalendarDay(
-                modifier = Modifier,
-                viewState = viewState1,
-                onClick = {
-                    viewState1 = viewState1.copy(isSelected = !viewState1.isSelected)
-                })
-            CalendarDay(
-                modifier = Modifier,
-                viewState = viewState2,
-                onClick = {
-                    viewState2 = viewState2.copy(isSelected = !viewState2.isSelected)
-                })
-            CalendarDay(
-                modifier = Modifier,
-                viewState = viewState3,
-                onClick = {
-                    viewState3 = viewState3.copy(isSelected = !viewState3.isSelected)
-                })
         }
     }
 }

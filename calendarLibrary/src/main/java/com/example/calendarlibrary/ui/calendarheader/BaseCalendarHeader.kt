@@ -67,10 +67,12 @@ internal fun DefaultCalendarHeaderContent(
 @Composable
 internal fun DefaultCalendarHeaderActionButtonContent(
     iconId: Int,
+    modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
     BaseActionButtonContent(
         iconId = iconId,
+        modifier = modifier,
         onClick = onClick
     )
 }

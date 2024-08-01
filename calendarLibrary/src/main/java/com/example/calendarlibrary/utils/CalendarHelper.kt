@@ -49,9 +49,11 @@ class CalendarHelper(
                         CalendarDayViewState(
                             value = day.dayOfMonth,
                             isSelected =
-                            selectedElement[1] == day.dayOfMonth.toString() && selectedElement[0].equals(
-                                day.month.getDisplayName(monthStyle, locale),
-                                true
+                            selectedElement.isNotEmpty() &&
+                                    selectedElement[1] == day.dayOfMonth.toString() &&
+                                    selectedElement[0].equals(
+                                        day.month.getDisplayName(monthStyle, locale),
+                                        true
                             ) && selectedElement[2] == day.year.toString(),
                             isToday = day == currentDay,
                             currentMonth = day.monthValue == month.value && day.year == year

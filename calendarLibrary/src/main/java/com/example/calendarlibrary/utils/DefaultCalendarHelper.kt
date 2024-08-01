@@ -41,7 +41,7 @@ abstract class DefaultCalendarHelper(
         while (currentDate <= endOfLastWeek) {
             val datesOfWeek = mutableListOf<LocalDate>()
 
-            repeat(weeks.size) {
+            repeat(weekDays.size) {
                 datesOfWeek.add(currentDate)
                 currentDate = currentDate.plusDays(1)
             }

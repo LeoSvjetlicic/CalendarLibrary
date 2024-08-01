@@ -1,6 +1,7 @@
 package com.example.calendarlibrary.ui.calendar
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.calendarlibrary.ui.calendarday.CalendarDays
@@ -42,15 +43,15 @@ internal fun DefaultHeader(
     viewState: CalendarHeaderViewState,
     onAction: (CalendarHeaderAction) -> Unit
 ) {
-    CalendarHeader(viewState = viewState, onAction = onAction)
+    CalendarHeader(modifier = Modifier.fillMaxWidth(), viewState = viewState, onAction = onAction)
 }
 
 @Composable
 internal fun DefaultWeekDays(viewState: CalendarWeekDaysViewState) {
-    CalendarWeekDays(viewState = viewState)
+    CalendarWeekDays(modifier = Modifier.fillMaxWidth(), viewState = viewState)
 }
 
 @Composable
 internal fun DefaultDays(viewState: CalendarDaysViewState, onClick: (Int) -> Unit) {
-    CalendarDays(viewState = viewState, onClick = onClick)
+    CalendarDays(modifier = Modifier.fillMaxWidth(), viewState = viewState, onClick = onClick)
 }

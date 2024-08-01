@@ -1,7 +1,9 @@
 package com.example.calendarlibrary.ui.calendarheader
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun CalendarHeader(
@@ -21,5 +23,9 @@ internal fun DefaultCalendarHeader(
     modifier: Modifier = Modifier,
     onAction: (CalendarHeaderAction) -> Unit,
 ) {
-    BaseCalendarHeader(viewState = viewState, modifier = modifier, onAction = onAction)
+    BaseCalendarHeader(
+        viewState = viewState,
+        modifier = modifier.padding(horizontal = 10.dp),
+        onAction = onAction
+    )
 }
