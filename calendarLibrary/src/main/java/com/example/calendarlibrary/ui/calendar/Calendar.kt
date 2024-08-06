@@ -14,7 +14,7 @@ import com.example.calendarlibrary.ui.calendarweekdays.CalendarWeekDaysViewState
 
 @Composable
 fun Calendar(
-    viewState: CalendarViewState,
+    viewState: ICalendarViewState,
     modifier: Modifier = Modifier,
     onHeaderAction: (CalendarHeaderAction) -> Unit,
     onDayClick: (Int) -> Unit = {},
@@ -27,14 +27,14 @@ fun Calendar(
     weekDays: @Composable () -> Unit = {
         DefaultWeekDays(viewState = viewState.weekDaysViewState)
     },
-    days: @Composable () -> Unit = {
+    content: @Composable () -> Unit = {
         DefaultDays(viewState.daysViewState, onClick = onDayClick)
     }
 ) {
     Column(modifier = modifier) {
         header()
         weekDays()
-        days()
+        content()
     }
 }
 

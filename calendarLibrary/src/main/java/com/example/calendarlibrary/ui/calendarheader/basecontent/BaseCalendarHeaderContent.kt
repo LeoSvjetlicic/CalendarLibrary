@@ -7,7 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -18,7 +18,7 @@ import com.example.calendarlibrary.ui.calendarheader.ContentAction
 fun BaseCalendarHeaderContent(
     viewState: CalendarHeaderViewState,
     modifier: Modifier = Modifier,
-    textStyle: TextStyle = TextStyle.Default.copy(color = White),
+    textStyle: TextStyle = TextStyle.Default.copy(color = Black),
     onAction: (ContentAction) -> Unit
 ) {
     Text(

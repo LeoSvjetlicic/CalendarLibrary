@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -21,7 +21,7 @@ fun BaseActionButtonContent(
     @DrawableRes iconId: Int,
     modifier: Modifier = Modifier,
     contentDescription: String = "",
-    iconTint: Color = White,
+    iconTint: Color = Black,
     paddingValues: PaddingValues = PaddingValues(6.dp),
     iconSize: Dp = 20.dp,
     onClick: () -> Unit

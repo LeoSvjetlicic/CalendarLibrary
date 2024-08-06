@@ -11,7 +11,7 @@ fun CalendarDay(
     viewState: ICalendarDay,
     modifier: Modifier = Modifier,
     onClick: (Int) -> Unit = {},
-    content: @Composable BoxScope.() -> Unit = {
+    content: @Composable BoxScope.(ICalendarDay) -> Unit = {
         DefaultCalendarDay(
             modifier = Modifier.align(Alignment.Center),
             viewState = viewState,
@@ -23,7 +23,7 @@ fun CalendarDay(
     Box(
         modifier = modifier
     ) {
-        content()
+        content(viewState)
         helperContent()
     }
 }

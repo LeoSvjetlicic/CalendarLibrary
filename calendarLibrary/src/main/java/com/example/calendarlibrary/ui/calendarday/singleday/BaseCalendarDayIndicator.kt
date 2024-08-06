@@ -12,13 +12,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.calendarlibrary.ui.colors.Orchid
+import com.example.calendarlibrary.ui.colors.Purple
 
 @Composable
 fun BoxScope.BaseCalendarDayIndicator(
     modifier: Modifier = Modifier,
-    indicatorColor: Color = Orchid,
-    indicatorSize: Dp = 4.dp,
+    indicatorColor: Color = Purple,
+    indicatorSize: Dp = 4.5.dp,
 ) {
     Spacer(
         modifier = modifier

@@ -1,6 +1,6 @@
 package com.example.calendarlibrary.utils
 
-import com.example.calendarlibrary.ui.calendar.CalendarViewState
+import com.example.calendarlibrary.ui.calendar.ICalendarViewState
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.Month
@@ -9,14 +9,6 @@ import java.util.Locale
 
 interface ICalendarHelper {
     val weekDays: List<DayOfWeek>
-    fun generateCalendarViewState(
-        year: Int = LocalDate.now().year,
-        month: Month = LocalDate.now().month,
-        weekDayStyle: TextStyle = TextStyle.NARROW,
-        monthStyle: TextStyle = TextStyle.SHORT,
-        locale: Locale = Locale.getDefault(),
-        selectedDay: String = ""
-    ): CalendarViewState
 
     fun getDaysOfWeekNames(
         style: TextStyle,
@@ -27,4 +19,13 @@ interface ICalendarHelper {
         year: Int = LocalDate.now().year,
         month: Month = LocalDate.now().month,
     ): List<List<LocalDate>>
+
+    fun generateCalendarViewState(
+        year: Int = LocalDate.now().year,
+        month: Month = LocalDate.now().month,
+        weekDayStyle: TextStyle = TextStyle.NARROW,
+        monthStyle: TextStyle = TextStyle.SHORT,
+        locale: Locale = Locale.getDefault(),
+        selectedDay: String = ""
+    ): ICalendarViewState
 }

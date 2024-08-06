@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.font.FontFamily
@@ -24,9 +25,9 @@ fun BoxScope.BaseCalendarDayTextContent(
     viewState: ICalendarDay,
     modifier: Modifier = Modifier,
     selectedTextColor: Color = White,
-    unselectedTextColor: Color = White,
+    unselectedTextColor: Color = Black,
     notCurrentMonthTextColor: Color = Transparent,
-    textPadding: Dp = 6.dp,
+    textPadding: Dp = 4.dp,
     fontSize: TextUnit = TextUnit.Unspecified,
     fontStyle: FontStyle? = null,
     fontWeight: FontWeight? = null,
@@ -42,7 +43,7 @@ fun BoxScope.BaseCalendarDayTextContent(
             ),
         textAlign = TextAlign.Center,
         text = viewState.value.toString(),
-        color = if (viewState.currentMonth) {
+        color = if (viewState.isCurrentMonth) {
             if (viewState.isSelected) {
                 selectedTextColor
             } else {

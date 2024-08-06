@@ -15,7 +15,7 @@ fun CalendarDays(
     }
 ) {
     Column(modifier = modifier) {
-        for (day in viewState.daysViewState) {
+        for (day in viewState.days) {
             dayContent(day)
         }
     }

@@ -25,7 +25,7 @@ internal fun DefaultCalendarWeekDays(
 ) {
     BaseCalendarWeekDays(
         viewState = viewState,
-        modifier = modifier,
-        textStyle = TextStyle.Default.copy(color = Color.White)
+        modifier = modifier.padding(vertical = 6.dp),
+        textStyle = TextStyle.Default.copy(color = Color.Black)
     )
 }
