@@ -11,7 +11,7 @@ import java.time.Month
 import java.time.format.TextStyle
 import java.util.Locale
 
-class CalendarHelper(
+class SimpleCalendarHelper(
     weekDays: List<DayOfWeek> = listOf(
         DayOfWeek.MONDAY,
         DayOfWeek.TUESDAY,

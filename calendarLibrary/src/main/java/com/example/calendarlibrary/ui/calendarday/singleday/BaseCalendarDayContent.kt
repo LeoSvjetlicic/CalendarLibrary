@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -26,7 +26,7 @@ import com.example.calendarlibrary.ui.colors.Indigo
 
 @Composable
 fun BaseCalendarDayContent(
-    viewState: CalendarDayViewState,
+    viewState: ICalendarDay,
     modifier: Modifier = Modifier,
     paddingValues: PaddingValues = PaddingValues(6.dp),
     selectedBackgroundColor: Color = Indigo,
@@ -40,9 +40,9 @@ fun BaseCalendarDayContent(
     indicator: @Composable BoxScope.() -> Unit = {
         DefaultCalendarDayIndicator()
     },
-    onClick: (Int) -> Unit
+    onClick: (Int) -> Unit = {}
 ) {
-    var width by remember { mutableStateOf(0) }
+    var width by remember { mutableIntStateOf(0) }
     val density = LocalDensity.current
     Box(
         modifier = modifier
@@ -79,7 +79,7 @@ fun BaseCalendarDayContent(
 
 @Composable
 internal fun BoxScope.DefaultCalendarDayContent(
-    viewState: CalendarDayViewState,
+    viewState: ICalendarDay,
     modifier: Modifier = Modifier,
     content: @Composable BoxScope.() -> Unit = {
         BaseCalendarDayTextContent(viewState, modifier)

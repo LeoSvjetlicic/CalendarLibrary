@@ -19,17 +19,16 @@ import androidx.compose.ui.unit.dp
 import com.example.calendarlibrary.ui.calendar.Calendar
 import com.example.calendarlibrary.ui.calendarday.CalendarDays
 import com.example.calendarlibrary.ui.calendarday.CalendarDaysRow
-import com.example.calendarlibrary.ui.calendarday.singleday.BaseCalendarDay
 import com.example.calendarlibrary.ui.calendarday.singleday.BaseCalendarDayContent
 import com.example.calendarlibrary.ui.calendarday.singleday.BaseCalendarDayTextContent
 import com.example.calendarlibrary.ui.calendarday.singleday.CalendarDay
 import com.example.calendarlibrary.ui.calendarweekdays.CalendarWeekDays
-import com.example.calendarlibrary.utils.CalendarHelper
+import com.example.calendarlibrary.utils.SimpleCalendarHelper
 import com.example.library.ui.theme.LibraryTheme
 import java.time.DayOfWeek
 
 class MainActivity : ComponentActivity() {
-    val helperUS = CalendarHelper(
+    val helperUS = SimpleCalendarHelper(
         listOf(
             DayOfWeek.SUNDAY,
             DayOfWeek.MONDAY,
@@ -40,7 +39,7 @@ class MainActivity : ComponentActivity() {
             DayOfWeek.SATURDAY,
         )
     )
-    val helperUK = CalendarHelper(
+    val helperUK = SimpleCalendarHelper(
         listOf(
             DayOfWeek.MONDAY,
             DayOfWeek.TUESDAY,
@@ -48,7 +47,6 @@ class MainActivity : ComponentActivity() {
             DayOfWeek.THURSDAY,
             DayOfWeek.FRIDAY,
             DayOfWeek.SATURDAY,
-            DayOfWeek.SUNDAY
         )
     )
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -107,36 +105,26 @@ class MainActivity : ComponentActivity() {
                                 CalendarDays(
                                     viewState = viewState2.daysViewState,
                                     modifier = Modifier,
-                                    onClick = {},
                                     dayContent = { dayContent ->
                                         CalendarDaysRow(
                                             viewState = dayContent,
-                                            onClick = {},
                                             day = { rowsContent ->
                                                 CalendarDay(
+                                                    modifier = Modifier.weight(1f),
                                                     viewState = rowsContent,
-                                                    onClick = {},
                                                     content = {
-                                                        BaseCalendarDay(
-                                                            modifier = Modifier.weight(1f),
+                                                        BaseCalendarDayContent(
                                                             viewState = rowsContent,
                                                             content = {
-                                                                BaseCalendarDayContent(
+                                                                BaseCalendarDayTextContent(
                                                                     viewState = rowsContent,
-                                                                    onClick = {},
-                                                                    content = {
-                                                                        BaseCalendarDayTextContent(
-                                                                            viewState = rowsContent,
-                                                                            notCurrentMonthTextColor = Color.LightGray.copy(
-                                                                                alpha = 0.2f
-                                                                            ),
-                                                                        )
-                                                                    }
+                                                                    notCurrentMonthTextColor = Color.LightGray.copy(
+                                                                        alpha = 0.2f
+                                                                    ),
                                                                 )
-                                                            },
-                                                            onClick = {}
+                                                            }
                                                         )
-                                                    }
+                                                    },
                                                 )
                                             }
                                         )

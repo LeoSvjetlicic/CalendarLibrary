@@ -1,26 +1,42 @@
 package com.example.calendarlibrary.ui.calendarday.singleday
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.Dp
 
 @Composable
 fun CalendarDay(
-    viewState: CalendarDayViewState,
-    onClick: (Int) -> Unit,
+    viewState: ICalendarDay,
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit = {
-        DefaultCalendarDay(viewState = viewState, onClick = onClick, modifier = modifier)
+    onClick: (Int) -> Unit = {},
+    content: @Composable BoxScope.() -> Unit = {
+        DefaultCalendarDay(
+            modifier = Modifier.align(Alignment.Center),
+            viewState = viewState,
+            onClick = onClick
+        )
     },
+    helperContent: @Composable BoxScope.() -> Unit = {}
 ) {
-    content()
+    Box(
+        modifier = modifier
+    ) {
+        content()
+        helperContent()
+    }
 }
 
 @Composable
 internal fun DefaultCalendarDay(
-    viewState: CalendarDayViewState,
+    viewState: ICalendarDay,
     modifier: Modifier = Modifier,
     onClick: (Int) -> Unit
 ) {
-    BaseCalendarDay(viewState = viewState, modifier = modifier, onClick = onClick)
+    BaseCalendarDayContent(
+        modifier = modifier,
+        viewState = viewState,
+        onClick = onClick
+    )
 }

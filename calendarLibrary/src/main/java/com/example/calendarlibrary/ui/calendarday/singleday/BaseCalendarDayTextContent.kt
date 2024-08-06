@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun BoxScope.BaseCalendarDayTextContent(
-    viewState: CalendarDayViewState,
+    viewState: ICalendarDay,
     modifier: Modifier = Modifier,
     selectedTextColor: Color = White,
     unselectedTextColor: Color = White,

@@ -3,14 +3,14 @@ package com.example.calendarlibrary.ui.calendarday
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.calendarlibrary.ui.calendarday.singleday.CalendarDayViewState
+import com.example.calendarlibrary.ui.calendarday.singleday.ICalendarDay
 
 @Composable
 fun CalendarDays(
     viewState: CalendarDaysViewState,
     modifier: Modifier = Modifier,
-    onClick: (Int) -> Unit,
-    dayContent: @Composable (List<CalendarDayViewState>) -> Unit = {
+    onClick: (Int) -> Unit = {},
+    dayContent: @Composable (List<ICalendarDay>) -> Unit = {
         DefaultCalendarDaysRow(viewState = it, onClick = onClick)
     }
 ) {
@@ -23,7 +23,7 @@ fun CalendarDays(
 
 @Composable
 internal fun DefaultCalendarDaysRow(
-    viewState: List<CalendarDayViewState>,
+    viewState: List<ICalendarDay>,
     modifier: Modifier = Modifier,
     onClick: (Int) -> Unit
 ) {

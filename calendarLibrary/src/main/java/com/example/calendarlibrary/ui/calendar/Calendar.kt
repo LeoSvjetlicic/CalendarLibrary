@@ -17,7 +17,7 @@ fun Calendar(
     viewState: CalendarViewState,
     modifier: Modifier = Modifier,
     onHeaderAction: (CalendarHeaderAction) -> Unit,
-    onDayClick: (Int) -> Unit,
+    onDayClick: (Int) -> Unit = {},
     header: @Composable () -> Unit = {
         DefaultHeader(
             viewState = viewState.headerViewState,

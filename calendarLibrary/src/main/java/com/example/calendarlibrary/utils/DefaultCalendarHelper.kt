@@ -8,8 +8,9 @@ import java.time.format.TextStyle
 import java.time.temporal.TemporalAdjusters
 import java.util.Locale
 
+
 abstract class DefaultCalendarHelper(
-    private val weekDays: List<DayOfWeek> = listOf(
+    override val weekDays: List<DayOfWeek> = listOf(
         DayOfWeek.MONDAY,
         DayOfWeek.TUESDAY,
         DayOfWeek.WEDNESDAY,
@@ -18,16 +19,16 @@ abstract class DefaultCalendarHelper(
         DayOfWeek.SATURDAY,
         DayOfWeek.SUNDAY
     )
-) {
+) : ICalendarHelper {
 
-    protected fun getDaysOfWeekNames(
+    override fun getDaysOfWeekNames(
         style: TextStyle,
         locale: Locale,
     ): List<String> = weekDays.map { it.getDisplayName(style, locale) }
 
-    fun generateWeeks(
-        year: Int = LocalDate.now().year,
-        month: Month = LocalDate.now().month,
+    override fun  generateWeeks(
+        year: Int,
+        month: Month,
     ): List<List<LocalDate>> {
         val startOfMonth = LocalDate.of(year, month.value, 1)
         val endOfMonth = startOfMonth.with(TemporalAdjusters.lastDayOfMonth())
@@ -45,18 +46,18 @@ abstract class DefaultCalendarHelper(
                 datesOfWeek.add(currentDate)
                 currentDate = currentDate.plusDays(1)
             }
-
+            currentDate = currentDate.plusDays((7 - weekDays.size).toLong())
             weeks.add(datesOfWeek)
         }
         return weeks
     }
 
-    abstract fun generateCalendarViewState(
-        year: Int = LocalDate.now().year,
-        month: Month = LocalDate.now().month,
-        weekDayStyle: TextStyle = TextStyle.NARROW,
-        monthStyle: TextStyle = TextStyle.SHORT,
-        locale: Locale = Locale.getDefault(),
-        selectedDay: String = ""
+    abstract override fun generateCalendarViewState(
+        year: Int,
+        month: Month,
+        weekDayStyle: TextStyle,
+        monthStyle: TextStyle,
+        locale: Locale,
+        selectedDay: String
     ): CalendarViewState
 }
