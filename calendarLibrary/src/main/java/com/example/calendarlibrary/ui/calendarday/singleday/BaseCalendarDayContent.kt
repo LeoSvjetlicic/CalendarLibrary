@@ -23,6 +23,7 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.example.calendarlibrary.ui.colors.LightPurple
+import java.time.LocalDate
 
 
 @Composable
@@ -42,7 +43,7 @@ fun BaseCalendarDayContent(
     indicator: @Composable BoxScope.() -> Unit = {
         DefaultCalendarDayIndicator()
     },
-    onClick: (Int) -> Unit
+    onClick: (LocalDate) -> Unit
 ) {
     var width by remember { mutableIntStateOf(0) }
     var height by remember { mutableIntStateOf(0) }

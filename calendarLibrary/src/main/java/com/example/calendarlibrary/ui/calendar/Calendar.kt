@@ -11,13 +11,14 @@ import com.example.calendarlibrary.ui.calendarheader.CalendarHeaderAction
 import com.example.calendarlibrary.ui.calendarheader.CalendarHeaderViewState
 import com.example.calendarlibrary.ui.calendarweekdays.CalendarWeekDays
 import com.example.calendarlibrary.ui.calendarweekdays.CalendarWeekDaysViewState
+import java.time.LocalDate
 
 @Composable
 fun Calendar(
     viewState: ICalendarViewState,
     modifier: Modifier = Modifier,
     onHeaderAction: (CalendarHeaderAction) -> Unit,
-    onDayClick: (Int) -> Unit = {},
+    onDayClick: (LocalDate) -> Unit = {},
     header: @Composable () -> Unit = {
         DefaultHeader(
             viewState = viewState.headerViewState,
@@ -52,6 +53,6 @@ internal fun DefaultWeekDays(viewState: CalendarWeekDaysViewState) {
 }
 
 @Composable
-internal fun DefaultDays(viewState: CalendarDaysViewState, onClick: (Int) -> Unit) {
+internal fun DefaultDays(viewState: CalendarDaysViewState, onClick: (LocalDate) -> Unit) {
     CalendarDays(modifier = Modifier.fillMaxWidth(), viewState = viewState, onClick = onClick)
 }

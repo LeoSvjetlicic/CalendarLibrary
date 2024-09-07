@@ -5,12 +5,13 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import java.time.LocalDate
 
 @Composable
 fun CalendarDay(
     viewState: ICalendarDay,
     modifier: Modifier = Modifier,
-    onClick: (Int) -> Unit = {},
+    onClick: (LocalDate) -> Unit = {},
     content: @Composable BoxScope.(ICalendarDay) -> Unit = {
         DefaultCalendarDay(
             modifier = Modifier.align(Alignment.Center),
@@ -32,7 +33,7 @@ fun CalendarDay(
 internal fun DefaultCalendarDay(
     viewState: ICalendarDay,
     modifier: Modifier = Modifier,
-    onClick: (Int) -> Unit
+    onClick: (LocalDate) -> Unit
 ) {
     BaseCalendarDayContent(
         modifier = modifier,

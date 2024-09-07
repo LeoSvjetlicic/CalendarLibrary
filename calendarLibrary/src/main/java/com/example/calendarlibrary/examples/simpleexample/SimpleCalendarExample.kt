@@ -20,13 +20,14 @@ import com.example.calendarlibrary.examples.simpleexample.components.SimpleHeade
 import com.example.calendarlibrary.examples.simpleexample.components.SimpleWeekDays
 import com.example.calendarlibrary.ui.calendar.Calendar
 import com.example.calendarlibrary.ui.calendarheader.CalendarHeaderAction
+import java.time.LocalDate
 
 @Composable
 fun SimpleCalendarExample(
     viewState: SimpleCalendarViewState,
     modifier: Modifier = Modifier,
     onHeaderAction: (CalendarHeaderAction) -> Unit,
-    onDayClick: (Int) -> Unit
+    onDayClick: (LocalDate) -> Unit
 ) {
     Calendar(
         modifier = modifier

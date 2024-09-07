@@ -49,6 +49,6 @@ abstract class BaseCalendarHelper(
         weekDayStyle: TextStyle,
         monthStyle: TextStyle,
         locale: Locale,
-        selectedDay: String
+        selectedDays: SelectedDays
     ): ICalendarViewState
 }

@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.calendarlibrary.ui.calendarday.singleday.CalendarDay
 import com.example.calendarlibrary.ui.calendarday.singleday.ICalendarDay
+import java.time.LocalDate
 
 @Composable
 fun CalendarDaysRow(
@@ -16,7 +17,7 @@ fun CalendarDaysRow(
     modifier: Modifier = Modifier,
     alignment: Alignment.Vertical = Alignment.CenterVertically,
     arrangement: Arrangement.Horizontal = Arrangement.SpaceEvenly,
-    onClick: (Int) -> Unit = {},
+    onClick: (LocalDate) -> Unit = {},
     day: @Composable RowScope.(ICalendarDay) -> Unit = {
         DefaultSingleCalendarDay(
             modifier = Modifier.weight(1f),
@@ -40,7 +41,7 @@ fun CalendarDaysRow(
 fun DefaultSingleCalendarDay(
     viewState: ICalendarDay,
     modifier: Modifier = Modifier,
-    onClick: (Int) -> Unit
+    onClick: (LocalDate) -> Unit
 ) {
     CalendarDay(viewState = viewState, modifier = modifier, onClick = onClick)
 }

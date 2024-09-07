@@ -42,7 +42,7 @@ fun BoxScope.BaseCalendarDayTextContent(
                 alignment = Alignment.Center
             ),
         textAlign = TextAlign.Center,
-        text = viewState.value.toString(),
+        text = viewState.value.dayOfMonth.toString(),
         color = if (viewState.isCurrentMonth) {
             if (viewState.isSelected) {
                 selectedTextColor

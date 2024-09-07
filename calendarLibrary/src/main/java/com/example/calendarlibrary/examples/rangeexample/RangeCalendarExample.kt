@@ -1,22 +1,20 @@
-package com.example.calendarlibrary.examples.defaultexample
+package com.example.calendarlibrary.examples.rangeexample
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.calendarlibrary.examples.rangeexample.components.RangeCalendarDays
 import com.example.calendarlibrary.ui.calendar.Calendar
 import com.example.calendarlibrary.ui.calendar.ICalendarViewState
 import com.example.calendarlibrary.ui.calendarheader.CalendarHeaderAction
 import java.time.LocalDate
 
 @Composable
-fun DefaultCalendarExample(
+fun RangeCalendarExample(
     viewState: ICalendarViewState,
     modifier: Modifier = Modifier,
     onHeaderAction: (CalendarHeaderAction) -> Unit,
@@ -26,12 +24,12 @@ fun DefaultCalendarExample(
         modifier = modifier
             .fillMaxWidth()
             .padding(12.dp)
-            .clip(RoundedCornerShape(12.dp))
-            .background(Color.White)
-            .border(width = 0.5.dp, shape = RoundedCornerShape(12.dp), color = Color.Black)
-            .padding(8.dp),
+            .background(Color(222, 222, 222))
+            .padding(12.dp),
         viewState = viewState,
         onHeaderAction = onHeaderAction,
-        onDayClick = onDayClick
+        content = {
+            RangeCalendarDays(viewState = viewState.daysViewState, onClick = onDayClick)
+        }
     )
 }
