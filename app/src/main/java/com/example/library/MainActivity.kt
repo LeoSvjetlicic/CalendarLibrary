@@ -151,17 +151,35 @@ class MainActivity : ComponentActivity() {
                                             newEndDate =
                                                 newStartDate
                                             newStartDate = clickedDay
-                                        } else {
+                                        } else if (clickedDay == newEndDate) {
+                                            newEndDate = null
+                                        } else if (newEndDate != null && clickedDay > newEndDate) {
+                                            newStartDate =
+                                                newEndDate
                                             newEndDate = clickedDay
+                                        } else {
+                                            if (newStartDate == null) {
+                                                newStartDate = clickedDay
+                                            } else {
+                                                newEndDate = clickedDay
+                                            }
                                         }
                                     }
 
                                     2 -> {
-                                        val middle = getMiddleDate(newStartDate, newEndDate)
-                                        if (clickedDay < middle) {
-                                            newStartDate = clickedDay
+                                        if (clickedDay != newStartDate && clickedDay != newEndDate) {
+                                            val middle = getMiddleDate(newStartDate, newEndDate)
+                                            if (clickedDay < middle) {
+                                                newStartDate = clickedDay
+                                            } else {
+                                                newEndDate = clickedDay
+                                            }
                                         } else {
-                                            newEndDate = clickedDay
+                                            if (newStartDate == clickedDay) {
+                                                newStartDate = null
+                                            } else if (newEndDate == clickedDay) {
+                                                newEndDate = null
+                                            }
                                         }
                                     }
                                 }
