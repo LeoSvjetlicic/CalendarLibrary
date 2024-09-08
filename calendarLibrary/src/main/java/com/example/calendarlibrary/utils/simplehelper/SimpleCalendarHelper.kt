@@ -17,11 +17,6 @@ import java.util.Locale
 class SimpleCalendarHelper(
     override val weekDays: List<DayOfWeek>
 ) : BaseCalendarHelper(weekDays) {
-    override fun getDaysOfWeekNames(
-        style: TextStyle,
-        locale: Locale,
-    ): List<String> = DayOfWeek.entries.map { it.getDisplayName(style, locale) }
-
     override fun generateCalendarViewState(
         year: Int,
         month: Month,

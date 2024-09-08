@@ -28,7 +28,7 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 
 class MainActivity : ComponentActivity() {
-    val helperUK = DefaultCalendarHelper(
+    private val helperUK = DefaultCalendarHelper(
         listOf(
             DayOfWeek.MONDAY,
             DayOfWeek.TUESDAY,
@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
             DayOfWeek.SUNDAY,
         )
     )
-    val helperUS = RangeCalendarHelper(
+    private val helperUS = RangeCalendarHelper(
         listOf(
             DayOfWeek.SUNDAY,
             DayOfWeek.MONDAY,
@@ -50,7 +50,7 @@ class MainActivity : ComponentActivity() {
             DayOfWeek.SATURDAY,
         )
     )
-    val workDays = SimpleCalendarHelper(
+    private val workDays = SimpleCalendarHelper(
         listOf(
             DayOfWeek.MONDAY,
             DayOfWeek.TUESDAY,
@@ -69,26 +69,26 @@ class MainActivity : ComponentActivity() {
             val currentYear by remember {
                 mutableStateOf(LocalDate.now().year)
             }
+            var viewState1 by remember {
+                mutableStateOf(helperUK.generateCalendarViewState())
+            }
+
+            var viewState2 by remember {
+                mutableStateOf(workDays.generateCalendarViewState())
+            }
+
+            var viewState3 by remember {
+                mutableStateOf(
+                    helperUS.generateCalendarViewState(
+                        year = currentYear,
+                        month = currentMonth,
+                        selectedDays = SelectedDays.DayRange(null, null)
+                    )
+                )
+            }
             LibraryTheme {
                 LazyColumn {
                     item {
-                        var viewState1 by remember {
-                            mutableStateOf(helperUK.generateCalendarViewState())
-                        }
-
-                        var viewState2 by remember {
-                            mutableStateOf(workDays.generateCalendarViewState())
-                        }
-
-                        var viewState3 by remember {
-                            mutableStateOf(
-                                helperUS.generateCalendarViewState(
-                                    year = currentYear,
-                                    month = currentMonth,
-                                    selectedDays = SelectedDays.DayRange(null, null)
-                                )
-                            )
-                        }
                         DefaultCalendarExample(
                             modifier = Modifier.width(300.dp),
                             viewState = viewState1,
@@ -97,10 +97,10 @@ class MainActivity : ComponentActivity() {
                                 val newDays = viewState1.daysViewState.days.map { week ->
                                     week.map { d ->
                                         d as CalendarDayViewState
-                                        if (d.value == it && d.isCurrentMonth) {
-                                            d.copy(isSelected = true)
-                                        } else {
+                                        if (d.isSelected) {
                                             d.copy(isSelected = false)
+                                        } else {
+                                            d.copy(isSelected = d.value == it && d.isCurrentMonth)
                                         }
                                     }
                                 }
@@ -119,12 +119,11 @@ class MainActivity : ComponentActivity() {
                                 val newDays = viewState2.daysViewState.days.map { week ->
                                     week.map { d ->
                                         d as CalendarDayViewState
-                                        if (d.value == it && d.isCurrentMonth) {
-                                            d.copy(isSelected = true)
-                                        } else {
+                                        if (d.isSelected) {
                                             d.copy(isSelected = false)
-                                        }
-                                    }
+                                        } else {
+                                            d.copy(isSelected = d.value == it && d.isCurrentMonth)
+                                        }                                    }
                                 }
                                 val newDaysViewState = viewState2.daysViewState.copy(
                                     days = newDays

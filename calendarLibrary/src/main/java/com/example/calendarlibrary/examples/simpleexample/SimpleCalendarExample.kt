@@ -59,7 +59,9 @@ fun SimpleCalendarExample(
                     .background(Color.DarkGray)
             )
             Column(modifier = Modifier.padding(top = 12.dp)) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     Text(
                         text = "Today's date: ",
                         fontSize = 20.sp,

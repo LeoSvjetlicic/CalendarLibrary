@@ -22,8 +22,8 @@ import com.example.calendarlibrary.ui.calendarday.singleday.BaseCalendarDayConte
 import com.example.calendarlibrary.ui.calendarday.singleday.BaseCalendarDayTextContent
 import com.example.calendarlibrary.ui.calendarday.singleday.CalendarDay
 import com.example.calendarlibrary.ui.colors.DarkGreen
-import com.example.calendarlibrary.ui.colors.LightGreen
 import java.time.LocalDate
+import kotlin.random.Random
 
 @Composable
 fun SimpleDays(
@@ -37,7 +37,15 @@ fun SimpleDays(
         onClick = onClick
     ) { weekDays ->
         Row(
-            modifier = modifier.fillMaxWidth(),
+            modifier = modifier
+                .fillMaxWidth()
+                .background(
+                    Color(
+                        Random.nextInt(0, 255),
+                        Random.nextInt(0, 255),
+                        Random.nextInt(0, 255)
+                    ).copy(alpha = 0.3f)
+                ),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
@@ -54,7 +62,7 @@ fun SimpleDays(
                                     if (day.isSelected) {
                                         Modifier.border(
                                             width = 4.dp,
-                                            color = LightGreen,
+                                            color = Color.Blue,
                                             shape = CircleShape
                                         )
                                     } else {
