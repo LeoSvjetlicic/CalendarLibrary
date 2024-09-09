@@ -41,7 +41,7 @@ class RangeCalendarHelper(
                             isToday = day == currentDay,
                             isCurrentMonth = day.monthValue == month.value && day.year == year,
                             isInRange = if (tempSelectedDays.startDay != null && tempSelectedDays.endDay != null) {
-                                tempSelectedDays.startDay >= day && tempSelectedDays.endDay <= day
+                                tempSelectedDays.startDay < day && tempSelectedDays.endDay > day
                             } else {
                                 false
                             }

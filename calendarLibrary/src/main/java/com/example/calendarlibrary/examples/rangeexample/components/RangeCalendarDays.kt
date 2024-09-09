@@ -1,5 +1,6 @@
 package com.example.calendarlibrary.examples.rangeexample.components
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -41,6 +42,7 @@ fun RangeCalendarDays(
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             weekDays.forEach { day ->
+                Log.d("kuibuo",day.toString())
                 CalendarDay(
                     modifier = Modifier
                         .weight(1f)

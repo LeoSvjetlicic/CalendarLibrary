@@ -13,8 +13,8 @@ import com.example.calendarlibrary.R
 import com.example.calendarlibrary.ui.calendarheader.CalendarHeaderAction
 import com.example.calendarlibrary.ui.calendarheader.CalendarHeaderViewState
 import com.example.calendarlibrary.ui.calendarheader.ContentAction
-import com.example.calendarlibrary.ui.calendarheader.FirstLeadingAction
 import com.example.calendarlibrary.ui.calendarheader.FirstTrailingAction
+import com.example.calendarlibrary.ui.calendarheader.SecondLeadingAction
 import com.example.calendarlibrary.ui.calendarheader.basecontent.BaseActionButtonContent
 import com.example.calendarlibrary.ui.calendarheader.basecontent.BaseCalendarHeaderContent
 
@@ -27,7 +27,7 @@ fun SimpleHeader(
     firstIconContent: @Composable () -> Unit = {
         SimpleCalendarHeaderActionButtonContent(
             iconId = R.drawable.ic_left_single,
-            onClick = { onAction(FirstLeadingAction) })
+            onClick = { onAction(SecondLeadingAction) })
     },
     secondIconContent: @Composable () -> Unit = {
         SimpleCalendarHeaderActionButtonContent(
