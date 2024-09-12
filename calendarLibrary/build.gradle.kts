@@ -47,9 +47,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx.v283)
     implementation(libs.androidx.junit.ktx)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
-    val composeBom: Dependency = platform("androidx.compose:compose-bom:2022.10.00")
-    implementation(composeBom)
-    androidTestImplementation(composeBom)
     implementation(libs.ui)
     implementation(libs.androidx.material)
     implementation(libs.ui.tooling.preview)
@@ -58,22 +55,47 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.navigation.compose)
 }
-publishing {
-    publications {
-        create<MavenPublication>("release") {
-            groupId = project.findProperty("gpr.groupid") as String? ?: ""
-            artifactId = "calendarlibrary"
-            version = project.findProperty("gpr.version") as String? ?: ""
 
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                groupId = "io.github.leosvjetlicic"
+                artifactId = "calendar-library"
+                version = "0.0.5"
+                from(components["release"])
+
+                pom {
+                    packaging = "aar"
+                    name.set("CalendarLibrary")
+                    description.set("Customizable calendar library for android applications")
+                    url.set("https://github.com/LeoSvjetlicic/CalendarLibrary.git")
+                    inceptionYear.set("2024")
+                    licenses {
+                        license {
+                            name.set("MIT License")
+                            url.set("https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/LICENSE")
+                        }
+                    }
+                    developers {
+                        developer {
+                            id.set("LeoSvjetlicic")
+                            name.set("Leo Svjetlicic")
+                            email.set("leo.svjetlicic@gmail.com")
+                        }
+                    }
+                    scm {
+                        connection.set("scm:git:github.com//LeoSvjetlicic/CalendarLibrary")
+                        developerConnection.set("scm:git:ssh://github.com/LeoSvjetlicic/CalendarLibrary.git")
+                        url.set("https://github.com/LeoSvjetlicic/CalendarLibrary")
+                    }
+                }
+            }
         }
-    }
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/LeoSvjetlicic/CalendarLibrary")
-            credentials {
-                username = project.findProperty("gpr.user") as String? ?: ""
-                password = project.findProperty("gpr.token") as String? ?: ""
+
+        repositories {
+            maven {
+                url = uri("$buildDir/generated/release") // For testing locally
             }
         }
     }
