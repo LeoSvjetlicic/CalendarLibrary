@@ -13,6 +13,30 @@ import com.example.calendarlibrary.ui.calendarweekdays.CalendarWeekDays
 import com.example.calendarlibrary.ui.calendarweekdays.CalendarWeekDaysViewState
 import java.time.LocalDate
 
+/**
+ * Composable function that renders a calendar view based on the provided view state and customization options.
+ *
+ * This function constructs a calendar UI by assembling its header, week days, and days sections using
+ * the specified view state. It allows for customization of the header, week days, and days sections,
+ * and handles interactions such as header actions and day clicks.
+ *
+ * @param viewState The state object that provides the data needed to render the calendar. It should
+ *                  implement the [ICalendarViewState] interface and include information for the header,
+ *                  week days, and days.
+ * @param modifier A [Modifier] to apply customization such as padding, size, or other layout adjustments
+ *                 to the entire calendar.
+ * @param onHeaderAction A lambda function to handle actions triggered by interacting with the calendar's
+ *                       header. This handles clicks on navigation buttons in the header.
+ * @param onDayClick A lambda function that is triggered when a day is clicked. It receives a [LocalDate]
+ *                    representing the clicked day. The default is an empty lambda, meaning no action occurs
+ *                    if not explicitly provided.
+ * @param header A composable function to render the calendar header. It defaults to [DefaultHeader], which
+ *                takes the header view state and action handler as parameters.
+ * @param weekDays A composable function to render the week days. It defaults to [DefaultWeekDays], which
+ *                  takes the week days view state as a parameter.
+ * @param content A composable function to render the days of the calendar. It defaults to [DefaultDays],
+ *                which takes the days view state and day click handler as parameters.
+ */
 @Composable
 fun Calendar(
     viewState: ICalendarViewState,

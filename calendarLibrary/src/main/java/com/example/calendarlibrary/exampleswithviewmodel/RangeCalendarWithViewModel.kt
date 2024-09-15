@@ -1,30 +1,21 @@
 package com.example.calendarlibrary.exampleswithviewmodel
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.example.calendarlibrary.examples.rangeexample.RangeCalendarExample
-import com.example.calendarlibrary.examples.rangeexample.RangeCalendarViewState
 import com.example.calendarlibrary.exampleswithviewmodel.viewmodels.RangeViewModel
-import com.example.calendarlibrary.utils.SelectedDays
-import com.example.calendarlibrary.utils.rangehelper.RangeCalendarHelper
 
+/**
+ * This composable function renders a range calendar using a RangeViewModel.
+ *
+ * @param rangeViewModel The RangeViewModel instance managing the range calendar's state.
+ * @param modifier (Optional) A modifier to style the overall calendar layout.
+ */
 @Composable
 fun RangeCalendarWithViewModel(
-    helper: RangeCalendarHelper,
+    rangeViewModel: RangeViewModel,
     modifier: Modifier = Modifier
 ) {
-    val rangeViewModel by remember {
-        mutableStateOf(RangeViewModel(helper) { viewState, daysViewState, selectedRange ->
-            (viewState as RangeCalendarViewState).copy(
-                daysViewState = daysViewState,
-                selectedRange = selectedRange as SelectedDays.DayRange
-            )
-        })
-    }
-
     RangeCalendarExample(
         modifier = modifier,
         viewState = rangeViewModel.viewState.value,

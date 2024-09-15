@@ -25,7 +25,41 @@ import androidx.compose.ui.unit.dp
 import com.example.calendarlibrary.ui.colors.LightPurple
 import java.time.LocalDate
 
-
+/**
+ * Composable function that renders the content of a calendar day, including its background, content, and optional indicator.
+ *
+ * This function displays a calendar day with customizable appearance, including background color, shape, and content.
+ * It also handles click events and adjusts the size of the day cell to be square, ensuring consistent layout.
+ *
+ * @param viewState An instance of [ICalendarDay] representing the state of the calendar day. This includes details
+ *                  such as the date, selection status, whether it is part of the current month, and if it is today.
+ *                  Changing this parameter affects the displayed date, background color, and whether the day is
+ *                  highlighted or has an indicator.
+ * @param modifier A [Modifier] to apply customizations such as size, padding, or other layout adjustments to the
+ *                 calendar day cell. Changing this parameter allows for adjustments to the day’s visual presentation
+ *                 and positioning.
+ * @param shape The shape of the calendar day cell. Defaults to [CircleShape]. Changing this parameter alters the
+ *              shape of the cell (e.g., rounded corners, circles, etc.), affecting the overall look of the calendar.
+ * @param paddingValues The padding around the content within the calendar day cell. Defaults to [PaddingValues(6.dp)].
+ *                      Modifying this parameter adjusts the spacing around the day’s content, affecting its layout
+ *                      within the cell.
+ * @param selectedBackgroundColor The background color of the day when it is selected. Defaults to [LightPurple].
+ *                                Changing this parameter will modify the color of selected days, allowing for
+ *                                visual differentiation.
+ * @param unselectedBackgroundColor The background color of the day when it is not selected. Defaults to [Transparent].
+ *                                  Changing this parameter affects the color of unselected days, which could be useful
+ *                                  for visual consistency or highlighting.
+ * @param content A composable function defining the main content of the calendar day. Defaults to [DefaultCalendarDayContent],
+ *                which renders the day’s content based on the provided view state. Changing this composable alters how
+ *                the day’s content is displayed, allowing for customization of the day’s visual representation.
+ * @param indicator A composable function that displays an optional indicator (e.g., a dot) for the day if it is today.
+ *                  Defaults to [DefaultCalendarDayIndicator]. Changing this parameter allows for different indicators
+ *                  or additional visual cues to be shown for the current day.
+ * @param onClick A lambda function that is triggered when the calendar day is clicked. It receives a [LocalDate]
+ *                 representing the clicked day. The default is an empty lambda, meaning no action occurs if not
+ *                 explicitly provided. Modifying this lambda allows you to specify different actions when the day is clicked,
+ *                 such as updating the selected date or navigating to a detailed view.
+ */
 @Composable
 fun BaseCalendarDayContent(
     viewState: ICalendarDay,

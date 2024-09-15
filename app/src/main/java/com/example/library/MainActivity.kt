@@ -25,12 +25,14 @@ import com.example.calendarlibrary.examples.simpleexample.SimpleCalendarViewStat
 import com.example.calendarlibrary.exampleswithviewmodel.DefaultCalendarWithViewModel
 import com.example.calendarlibrary.exampleswithviewmodel.RangeCalendarWithViewModel
 import com.example.calendarlibrary.exampleswithviewmodel.SimpleCalendarWithViewModel
+import com.example.calendarlibrary.exampleswithviewmodel.viewmodels.BaseViewModel
+import com.example.calendarlibrary.exampleswithviewmodel.viewmodels.RangeViewModel
 import com.example.calendarlibrary.ui.calendar.DefaultCalendarViewState
 import com.example.calendarlibrary.ui.calendar.ICalendarViewState
 import com.example.calendarlibrary.ui.calendarday.singleday.CalendarDayViewState
 import com.example.calendarlibrary.utils.DateHelper.getMiddleDate
 import com.example.calendarlibrary.utils.ICalendarHelper
-import com.example.calendarlibrary.utils.SelectedDays
+import com.example.calendarlibrary.utils.Selected
 import com.example.calendarlibrary.utils.defaulthelper.DefaultCalendarHelper
 import com.example.calendarlibrary.utils.rangehelper.RangeCalendarHelper
 import com.example.calendarlibrary.utils.simplehelper.SimpleCalendarHelper
@@ -111,7 +113,7 @@ fun Examples(helper1: ICalendarHelper, helper2: ICalendarHelper, weekDaysHelper:
             helper2.generateCalendarViewState(
                 year = currentYear,
                 month = currentMonth,
-                selectedDays = SelectedDays.DayRange(null, null)
+                selected = Selected.DayRange(null, null)
             )
         )
     }
@@ -197,7 +199,11 @@ fun Examples(helper1: ICalendarHelper, helper2: ICalendarHelper, weekDaysHelper:
 
                 2 -> {
                     if (clickedDay != newStartDate && clickedDay != newEndDate) {
-                        val middle = getMiddleDate(newStartDate, newEndDate)
+                        val middle = if (newStartDate != null && newEndDate != null) {
+                            getMiddleDate(newStartDate, newEndDate)
+                        } else {
+                            null
+                        }
                         if (clickedDay < middle) {
                             newStartDate = clickedDay
                         } else {
@@ -232,7 +238,7 @@ fun Examples(helper1: ICalendarHelper, helper2: ICalendarHelper, weekDaysHelper:
 
             viewState3 = (viewState3 as RangeCalendarViewState).copy(
                 daysViewState = viewState3.daysViewState.copy(days = newDays),
-                selectedRange = SelectedDays.DayRange(newStartDate, newEndDate)
+                selectedRange = Selected.DayRange(newStartDate, newEndDate)
             )
         })
 }
@@ -240,15 +246,33 @@ fun Examples(helper1: ICalendarHelper, helper2: ICalendarHelper, weekDaysHelper:
 @Composable
 fun ExamplesWithViewModels(
     helper1: DefaultCalendarHelper,
-    helper2: RangeCalendarHelper,
     weekDaysHelper: SimpleCalendarHelper,
+    helper2: RangeCalendarHelper,
     modifier: Modifier = Modifier
 ) {
+    val viewModel1 by remember {
+        mutableStateOf(BaseViewModel(helper1) { viewState, daysViewState, _ ->
+            (viewState as DefaultCalendarViewState).copy(daysViewState = daysViewState)
+        })
+    }
+    val viewModel2 by remember {
+        mutableStateOf(BaseViewModel(weekDaysHelper) { viewState, daysViewState, _ ->
+            (viewState as SimpleCalendarViewState).copy(daysViewState = daysViewState)
+        })
+    }
+    val viewModel3 by remember {
+        mutableStateOf(RangeViewModel(helper2) { viewState, daysViewState, selectedRange ->
+            (viewState as RangeCalendarViewState).copy(
+                daysViewState = daysViewState,
+                selectedRange = selectedRange as Selected.DayRange
+            )
+        })
+    }
     Column(modifier = modifier) {
-        DefaultCalendarWithViewModel(helper1)
+        DefaultCalendarWithViewModel(viewModel1)
         Spacer(modifier = Modifier.height(20.dp))
-        SimpleCalendarWithViewModel(weekDaysHelper)
+        SimpleCalendarWithViewModel(viewModel2)
         Spacer(modifier = Modifier.height(20.dp))
-        RangeCalendarWithViewModel(helper2)
+        RangeCalendarWithViewModel(viewModel3)
     }
 }

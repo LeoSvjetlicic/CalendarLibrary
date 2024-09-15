@@ -1,34 +1,35 @@
 package com.example.calendarlibrary.examples.simpleexample.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import com.example.calendarlibrary.ui.calendarday.CalendarDays
 import com.example.calendarlibrary.ui.calendarday.CalendarDaysViewState
-import com.example.calendarlibrary.ui.calendarday.singleday.BaseCalendarDayContent
-import com.example.calendarlibrary.ui.calendarday.singleday.BaseCalendarDayTextContent
-import com.example.calendarlibrary.ui.calendarday.singleday.CalendarDay
-import com.example.calendarlibrary.ui.colors.DarkGreen
+import com.example.calendarlibrary.ui.calendarday.singleday.ICalendarDay
 import java.time.LocalDate
 
+/**
+ * This composable function renders a grid of days for a simple calendar.
+ *
+ * @param viewState The view state for the calendar days.
+ * @param modifier (Optional) A modifier to style the overall layout of the days grid.
+ * @param onClick (Optional) A callback function to handle clicks on calendar days. Defaults to an empty function.
+ * @param content (Optional) A lambda that defines the content to be displayed for each day. Defaults to rendering a `SimpleDay` composable.
+ */
 @Composable
 fun SimpleDays(
     viewState: CalendarDaysViewState,
     modifier: Modifier = Modifier,
-    onClick: (LocalDate) -> Unit = {}
+    onClick: (LocalDate) -> Unit = {},
+    content: @Composable RowScope.(ICalendarDay) -> Unit = { day ->
+        SimpleDay(day = day, onClick = onClick)
+    }
 ) {
     CalendarDays(
         viewState = viewState,
@@ -49,48 +50,7 @@ fun SimpleDays(
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             weekDays.forEach { day ->
-                CalendarDay(
-                    modifier = Modifier.weight(1f),
-                    viewState = day,
-                    content = {
-                        BaseCalendarDayContent(
-                            onClick = onClick,
-                            modifier = Modifier
-                                .clip(CircleShape)
-                                .then(
-                                    if (day.isSelected) {
-                                        Modifier.border(
-                                            width = 4.dp,
-                                            color = Color.Blue,
-                                            shape = CircleShape
-                                        )
-                                    } else {
-                                        Modifier
-                                    }
-                                )
-                                .align(Alignment.Center),
-                            viewState = day,
-                            shape = RoundedCornerShape(0.dp),
-                            selectedBackgroundColor = Color.Transparent,
-                            content = {
-                                BaseCalendarDayTextContent(
-                                    viewState = day,
-                                    notCurrentMonthTextColor = Color.Gray,
-                                    selectedTextColor = Color.Black
-                                )
-                            },
-                            indicator = {
-                                Spacer(
-                                    modifier = Modifier
-                                        .align(Alignment.BottomCenter)
-                                        .width(15.dp)
-                                        .height(2.5.dp)
-                                        .background(DarkGreen)
-                                )
-                            }
-                        )
-                    }
-                )
+                content(day)
             }
         }
     }

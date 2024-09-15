@@ -13,6 +13,14 @@ import com.example.calendarlibrary.ui.calendar.ICalendarViewState
 import com.example.calendarlibrary.ui.calendarheader.CalendarHeaderAction
 import java.time.LocalDate
 
+/**
+ * This composable function displays a range calendar example.
+ *
+ * @param viewState The view state for the calendar.
+ * @param modifier A modifier to style the overall calendar layout.
+ * @param onHeaderAction A callback function to handle header actions.
+ * @param onDayClick A callback function to handle day clicks.
+ */
 @Composable
 fun RangeCalendarExample(
     viewState: ICalendarViewState,

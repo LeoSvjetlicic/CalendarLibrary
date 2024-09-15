@@ -13,30 +13,76 @@ import com.example.calendarlibrary.ui.calendarheader.FirstTrailingAction
 import com.example.calendarlibrary.ui.calendarheader.SecondLeadingAction
 import com.example.calendarlibrary.ui.calendarheader.SecondTrailingAction
 import com.example.calendarlibrary.utils.ICalendarHelper
-import com.example.calendarlibrary.utils.SelectedDays
+import com.example.calendarlibrary.utils.Selected
 import java.time.LocalDate
 import java.time.Month
 
+/**
+ * Base class for view models interacting with a calendar UI.
+ *
+ * This class provides common functionality for managing calendar state,
+ * handling user interactions with days and the calendar header, and updating
+ * the view state accordingly. Subclasses can extend this base class to
+ * implement specific calendar UI behaviors.
+ *
+ * @param helper An implementation of the `ICalendarHelper` interface, used for
+ *               generating calendar data.
+ * @param selected The currently selected date information (defaults to empty SingleDay).
+ * @param copyViewState A function to create a new `ICalendarViewState` object
+ *                       based on the current state, updated day selection state,
+ *                       and selected date.
+ */
 open class BaseViewModel(
     private val helper: ICalendarHelper,
-    protected var selectedDays: SelectedDays = SelectedDays.SingleDay(null),
-    val copyViewState: (ICalendarViewState, CalendarDaysViewState, SelectedDays) -> ICalendarViewState
+    protected var selected: Selected = Selected.SingleDay(null),
+    val copyViewState: (ICalendarViewState, CalendarDaysViewState, Selected) -> ICalendarViewState
 ) : ViewModel() {
-    val viewState = mutableStateOf(helper.generateCalendarViewState(selectedDays = selectedDays))
+
+    /**
+     * The current view state of the calendar UI.
+     *
+     * This observable state is updated based on user interactions and reflects the
+     * current visual representation of the calendar.
+     */
+    val viewState = mutableStateOf(helper.generateCalendarViewState(selected = selected))
+
+    /**
+     * The internal state representing the current month.
+     *
+     * This mutable state variable is used to track the displayed month within the
+     * calendar UI.
+     */
     private val month = mutableStateOf(LocalDate.now().month)
+
+    /**
+     * The internal state representing the current year.
+     *
+     * This mutable integer state variable is used to track the displayed year
+     * within the calendar UI.
+     */
     private val year = mutableIntStateOf(LocalDate.now().year)
 
+    /**
+     * Handles user clicks on individual calendar days.
+     *
+     * This function updates the selected date information and the selection state
+     * of individual days within the calendar view state based on the clicked day.
+     * It then triggers a view state update using the provided `copyViewState`
+     * function.
+     *
+     * @param clickedDay The LocalDate object representing the clicked day.
+     */
     open fun onDayClick(clickedDay: LocalDate) {
         val newDays = viewState.value.daysViewState.days.map { week ->
             week.map { d ->
                 d as CalendarDayViewState
                 if (d.isSelected) {
-                    selectedDays = (selectedDays as SelectedDays.SingleDay).copy(day = null)
+                    selected = (selected as Selected.SingleDay).copy(day = null)
                     d.copy(isSelected = false)
                 } else {
                     if (d.value == clickedDay && d.isCurrentMonth) {
-                        selectedDays =
-                            (selectedDays as SelectedDays.SingleDay).copy(day = clickedDay)
+                        selected =
+                            (selected as Selected.SingleDay).copy(day = clickedDay)
                         d.copy(isSelected = true)
                     } else {
                         d.copy(isSelected = false)
@@ -47,9 +93,19 @@ open class BaseViewModel(
         val newDaysViewState = viewState.value.daysViewState.copy(
             days = newDays,
         )
-        viewState.value = copyViewState(viewState.value, newDaysViewState, selectedDays)
+        viewState.value = copyViewState(viewState.value, newDaysViewState, selected)
     }
 
+    /**
+     * Handles user interactions with the calendar header's action buttons.
+     *
+     * This function updates the displayed month and year based on the provided
+     * `CalendarHeaderAction` and then triggers a view state update by calling
+     * the helper's `generateCalendarViewState` function with the updated month
+     * and year.
+     *
+     * @param action The type of action triggered by the user interaction.
+     */
     open fun onHeaderAction(action: CalendarHeaderAction) {
         when (action) {
             SecondLeadingAction -> {
@@ -86,7 +142,7 @@ open class BaseViewModel(
         viewState.value = helper.generateCalendarViewState(
             year = year.intValue,
             month = month.value,
-            selectedDays = selectedDays
+            selected = selected
         )
     }
 }

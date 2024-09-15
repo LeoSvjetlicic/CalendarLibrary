@@ -6,32 +6,35 @@ import com.example.calendarlibrary.ui.calendarday.singleday.CalendarDayViewState
 import com.example.calendarlibrary.ui.calendarheader.CalendarHeaderViewState
 import com.example.calendarlibrary.ui.calendarweekdays.CalendarWeekDaysViewState
 import com.example.calendarlibrary.utils.BaseCalendarHelper
-import com.example.calendarlibrary.utils.SelectedDays
+import com.example.calendarlibrary.utils.Selected
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.Month
 import java.time.format.TextStyle
 import java.util.Locale
 
+/**
+ * A calendar helper class that generates default calendar data.
+ * @param weekDays changing enables you to select what week day range to display.
+ */
 class DefaultCalendarHelper(
-    weekDays: List<DayOfWeek> = listOf(
-        DayOfWeek.MONDAY,
-        DayOfWeek.TUESDAY,
-        DayOfWeek.WEDNESDAY,
-        DayOfWeek.THURSDAY,
-        DayOfWeek.FRIDAY,
-        DayOfWeek.SATURDAY,
-        DayOfWeek.SUNDAY
-    )
+    override val weekDays: List<DayOfWeek>
 ) : BaseCalendarHelper(weekDays) {
 
+    /**
+     * Generates a view state representing the calendar for a given year and month.
+     *
+     * For parameter details @see [BaseCalendarHelper.generateCalendarViewState]
+     *
+     * @return A DefaultCalendarViewState object containing all necessary data to display the calendar.
+     */
     override fun generateCalendarViewState(
         year: Int,
         month: Month,
         weekDayStyle: TextStyle,
         monthStyle: TextStyle,
         locale: Locale,
-        selectedDays: SelectedDays
+        selected: Selected?
     ): DefaultCalendarViewState {
         val currentDay = LocalDate.now()
         val weeks = generateWeeks(year, month)
@@ -46,8 +49,8 @@ class DefaultCalendarHelper(
                         CalendarDayViewState(
                             value = day,
                             isSelected =
-                            selectedDays is SelectedDays.SingleDay && selectedDays.day != null &&
-                                    selectedDays.day == day,
+                            selected is Selected.SingleDay && selected.day != null &&
+                                    selected.day == day,
                             isToday = day == currentDay,
                             isCurrentMonth = day.monthValue == month.value && day.year == year
                         )

@@ -21,7 +21,6 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -62,7 +61,7 @@ afterEvaluate {
             create<MavenPublication>("release") {
                 groupId = "io.github.leosvjetlicic"
                 artifactId = "calendar-library"
-                version = "0.0.5"
+                version = "0.0.6"
                 from(components["release"])
 
                 pom {

@@ -5,6 +5,14 @@ import com.example.calendarlibrary.ui.calendarday.CalendarDaysViewState
 import com.example.calendarlibrary.ui.calendarheader.CalendarHeaderViewState
 import com.example.calendarlibrary.ui.calendarweekdays.CalendarWeekDaysViewState
 
+/**
+ * Represents the view state for a simple calendar.
+ *
+ * @param headerViewState The view state for the calendar header.
+ * @param weekDaysViewState The view state for the week days.
+ * @param daysViewState The view state for the calendar days.
+ * @param today The current date in a formatted string.
+ */
 data class SimpleCalendarViewState(
     override val headerViewState: CalendarHeaderViewState,
     override val weekDaysViewState: CalendarWeekDaysViewState,

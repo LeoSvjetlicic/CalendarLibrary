@@ -7,6 +7,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 
+/**
+ * This composable function displays the weekdays for a calendar.
+ *
+ * It takes the following arguments:
+ *  @param viewState An instance of `CalendarWeekDaysViewState` holding the data for display.
+ *  @param modifier (Optional) A modifier to style the composable.
+ *  @param content (Optional) A lambda that defines the content to be displayed.
+ *      By default, it uses `DefaultCalendarWeekDays` composable.
+ */
 @Composable
 fun CalendarWeekDays(
     viewState: CalendarWeekDaysViewState,

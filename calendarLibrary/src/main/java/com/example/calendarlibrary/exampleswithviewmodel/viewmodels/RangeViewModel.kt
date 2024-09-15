@@ -4,21 +4,43 @@ import com.example.calendarlibrary.examples.rangeexample.RangeCalendarDay
 import com.example.calendarlibrary.ui.calendar.ICalendarViewState
 import com.example.calendarlibrary.ui.calendarday.CalendarDaysViewState
 import com.example.calendarlibrary.utils.DateHelper.getMiddleDate
-import com.example.calendarlibrary.utils.SelectedDays
+import com.example.calendarlibrary.utils.Selected
 import com.example.calendarlibrary.utils.rangehelper.RangeCalendarHelper
 import java.time.LocalDate
 
+/**
+ * View model class specifically designed for handling a calendar UI with
+ * selectable date ranges.
+ *
+ * This class inherits from `BaseViewModel` and overrides the `onDayClick`
+ * function to handle user selections in the context of a date range. It updates
+ * the selected start and end dates based on user interaction and keeps track of
+ * the "in range" state for individual days within the calendar view state.
+ * For parameter details @see [BaseViewModel]
+ */
 class RangeViewModel(
     helper: RangeCalendarHelper,
-    selectedDays: SelectedDays = SelectedDays.DayRange(null, null),
-    copyViewState: (ICalendarViewState, CalendarDaysViewState, SelectedDays) -> ICalendarViewState
-) : BaseViewModel(helper, selectedDays, copyViewState) {
-
+    selected: Selected = Selected.DayRange(null, null),
+    copyViewState: (ICalendarViewState, CalendarDaysViewState, Selected) -> ICalendarViewState
+) : BaseViewModel(helper, selected, copyViewState) {
+    /**
+     * Handles user clicks on individual calendar days, updating the selected
+     * date range and visual state accordingly.
+     *
+     * This function considers the current selection state (no selection,
+     * single day selected, or range selected) and updates the start and
+     * end dates of the selected range based on the clicked day. It also
+     * recalculates the "in range" state for each day within the calendar view
+     * state. Finally, it triggers a view state update using the provided
+     * `copyViewState` function.
+     *
+     * @param clickedDay The LocalDate object representing the clicked day.
+     */
     override fun onDayClick(clickedDay: LocalDate) {
         var newStartDate =
-            (selectedDays as SelectedDays.DayRange).startDay
+            (selected as Selected.DayRange).startDay
         var newEndDate =
-            (selectedDays as SelectedDays.DayRange).endDay
+            (selected as Selected.DayRange).endDay
         val selectedDaysSum =
             if (newEndDate != null && newStartDate != null) 2 else {
                 if (newEndDate != null || newStartDate != null) 1 else 0
@@ -49,7 +71,11 @@ class RangeViewModel(
 
             2 -> {
                 if (clickedDay != newStartDate && clickedDay != newEndDate) {
-                    val middle = getMiddleDate(newStartDate, newEndDate)
+                    val middle = if (newStartDate != null && newEndDate != null) {
+                        getMiddleDate(newStartDate, newEndDate)
+                    } else {
+                        null
+                    }
                     if (clickedDay < middle) {
                         newStartDate = clickedDay
                     } else {
@@ -84,15 +110,14 @@ class RangeViewModel(
         val newDaysViewState = viewState.value.daysViewState.copy(
             days = newDays,
         )
-        selectedDays = (selectedDays as SelectedDays.DayRange).copy(
+        selected = (selected as Selected.DayRange).copy(
             startDay = newStartDate,
             endDay = newEndDate
         )
         viewState.value = copyViewState(
             viewState.value,
             newDaysViewState,
-            selectedDays
+            selected
         )
     }
-
 }

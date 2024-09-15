@@ -21,6 +21,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.calendarlibrary.ui.calendarweekdays.CalendarWeekDaysViewState
 
+/**
+ * This composable function renders the weekdays for a simple calendar.
+ *
+ * @param viewState The view state for the calendar weekdays.
+ * @param modifier (Optional) A modifier to style the overall layout of the weekdays.
+ * @param alignment (Optional) The vertical alignment of the weekdays within the container. Defaults to centered vertically.
+ * @param arrangement (Optional) The horizontal arrangement of the weekdays. Defaults to spaced around.
+ * @param textStyle (Optional) The text style to be applied to the weekday labels. Defaults to the default text style.
+ */
 @Composable
 fun SimpleWeekDays(
     viewState: CalendarWeekDaysViewState,

@@ -6,6 +6,24 @@ import androidx.compose.ui.Modifier
 import com.example.calendarlibrary.ui.calendarday.singleday.ICalendarDay
 import java.time.LocalDate
 
+/**
+ * Composable function that renders the days of a calendar month in a vertical column.
+ *
+ * This function takes a view state containing the days to be displayed and renders each week as a row
+ * of days. It allows for customization of how each row of days is displayed and handles click events
+ * for individual days.
+ *
+ * @param viewState The state object containing the days to be displayed in the calendar. It should be
+ *                  an instance of [CalendarDaysViewState], which includes a list of weeks where each
+ *                  week is represented as a list of [ICalendarDay] objects.
+ * @param modifier A [Modifier] to apply customizations such as padding, size, or other layout adjustments
+ *                 to the entire column of days.
+ * @param onClick A lambda function triggered when a day is clicked. It receives a [LocalDate] representing
+ *                 the clicked day. The default is an empty lambda, meaning no action occurs if not explicitly provided.
+ * @param dayContent A composable function to render each row of days. It defaults to [DefaultCalendarDaysRow],
+ *                   which uses the provided view state and click handler to display each row. The function
+ *                   takes a list of [ICalendarDay] for each week and renders it accordingly.
+ */
 @Composable
 fun CalendarDays(
     viewState: CalendarDaysViewState,
@@ -16,8 +34,8 @@ fun CalendarDays(
     }
 ) {
     Column(modifier = modifier) {
-        for (day in viewState.days) {
-            dayContent(day)
+        for (week in viewState.days) {
+            dayContent(week)
         }
     }
 }

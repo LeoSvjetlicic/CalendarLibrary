@@ -1,26 +1,22 @@
 package com.example.calendarlibrary.exampleswithviewmodel
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.example.calendarlibrary.examples.simpleexample.SimpleCalendarExample
 import com.example.calendarlibrary.examples.simpleexample.SimpleCalendarViewState
 import com.example.calendarlibrary.exampleswithviewmodel.viewmodels.BaseViewModel
-import com.example.calendarlibrary.utils.simplehelper.SimpleCalendarHelper
 
+/**
+ * This composable function renders a simple calendar using a BaseViewModel.
+ *
+ * @param simpleViewModel The BaseViewModel instance managing the simple calendar's state.
+ * @param modifier (Optional) A modifier to style the overall calendar layout.
+ */
 @Composable
 fun SimpleCalendarWithViewModel(
-    helper: SimpleCalendarHelper,
+    simpleViewModel: BaseViewModel,
     modifier: Modifier = Modifier
 ) {
-    val simpleViewModel by remember {
-        (mutableStateOf(BaseViewModel(helper) { viewState, daysViewState,_ ->
-            (viewState as SimpleCalendarViewState).copy(daysViewState = daysViewState)
-        }))
-    }
-
     SimpleCalendarExample(
         modifier = modifier,
         viewState = simpleViewModel.viewState.value as SimpleCalendarViewState,

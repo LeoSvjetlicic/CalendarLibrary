@@ -22,6 +22,14 @@ import com.example.calendarlibrary.ui.calendar.Calendar
 import com.example.calendarlibrary.ui.calendarheader.CalendarHeaderAction
 import java.time.LocalDate
 
+/**
+ * This composable function displays a simple calendar example.
+ *
+ * @param viewState The view state for the simple calendar.
+ * @param modifier (Optional) A modifier to style the overall calendar layout.
+ * @param onHeaderAction A callback function to handle header actions.
+ * @param onDayClick A callback function to handle day clicks.
+ */
 @Composable
 fun SimpleCalendarExample(
     viewState: SimpleCalendarViewState,
