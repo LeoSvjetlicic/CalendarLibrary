@@ -1,15 +1,46 @@
-# Calendar Library
+# Calendar Library Documentation
 
-### A flexible and customizable calendar library for Android
+## Overview
 
-This library provides a foundation for building various calendar-based UIs in your Android app.
+- Brief description of the library and its purpose.
 
-### Key features:
+## Components
 
-- Highly customizable UI
+### Interfaces
 
-- Highly flexible week configurations and day-specific customizations
+- `ICalendarViewState`
+- `ICalendarDay`
 
-- Efficient performance
+### Data Classes
 
-More examples and documentation coming soon!
+- `CalendarHeaderViewState`
+- `CalendarDaysViewState`
+- `CalendarDayViewState`
+- `DefaultCalendarViewState`
+
+### Composables
+
+- `Calendar`
+- `CalendarDaysRow`
+- `CalendarDays`
+- `CalendarDay`
+- `BaseCalendarDayContent`
+- `BaseCalendarDayIndicator`
+- `BaseCalendarDayTextContent`
+- `BaseCalendarHeaderContent`
+- `BaseCalendarHeader`
+- `DefaultCalendarHeader`
+- `DefaultCalendarDaysRow`
+- `DefaultCalendarDay`
+
+## Customization
+
+- Overview of customizable parameters and their effects for each component.
+
+## Usage
+
+- Basic example of how to integrate and use the library in a Jetpack Compose project.
+
+## Additional Information
+
+- Links to source code, further documentation, or support.

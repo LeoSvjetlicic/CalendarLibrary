@@ -13,9 +13,8 @@
         android:theme="@style/Theme.Library"
         tools:targetApi="31">
         <activity
-            android:name="com.example.library.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.Library">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

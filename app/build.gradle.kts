@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.library"
+    namespace = "com.leosvjetlicic.library"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.library"
+        applicationId = "com.leosvjetlicic.library"
         minSdk = 28
         targetSdk = 34
         versionCode = 1
@@ -55,7 +55,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
-    implementation("androidx.compose.ui:ui-tooling-preview:1.7.0")
+    implementation(libs.androidx.ui.tooling.preview.v171)
     implementation(project(":calendarLibrary"))
     implementation(libs.androidx.foundation.android)
     implementation(libs.material3.android)

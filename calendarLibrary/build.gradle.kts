@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.calendarlibrary"
+    namespace = "com.leosvjetlicic.calendarlibrary"
     compileSdk = 34
     publishing {
         singleVariant("release") {
