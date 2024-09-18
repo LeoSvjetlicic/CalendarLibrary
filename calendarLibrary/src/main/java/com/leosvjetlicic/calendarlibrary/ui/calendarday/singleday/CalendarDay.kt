@@ -27,7 +27,7 @@ import java.time.LocalDate
  *                 when the day is clicked, such as navigating to details or updating the selected date.
  * @param content A composable function that defines the main content of the calendar day. It defaults to
  *                [DefaultCalendarDay], which renders the day using the provided view state and click handler.
- *                The function takes the [ICalendarDay.kt] as a parameter and displays it according to the provided
+ *                The function takes the [ICalendarHelper.kt] as a parameter and displays it according to the provided
  *                view state. Changing this composable function will alter how the day is rendered, allowing for
  *                custom designs or additional information to be shown.
  * @param helperContent A composable function for rendering additional content related to the calendar day,

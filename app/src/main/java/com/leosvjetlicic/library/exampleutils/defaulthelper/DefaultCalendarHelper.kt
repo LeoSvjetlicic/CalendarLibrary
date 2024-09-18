@@ -1,12 +1,12 @@
 package com.leosvjetlicic.library.exampleutils.defaulthelper
 
-import com.leosvjetlicic.calendarlibrary.ui.calendar.DefaultCalendarViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.CalendarDaysViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.singleday.CalendarDayViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarheader.CalendarHeaderViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarweekdays.CalendarWeekDaysViewState
 import com.leosvjetlicic.calendarlibrary.utils.BaseCalendarHelper
 import com.leosvjetlicic.calendarlibrary.utils.Selected
+import com.leosvjetlicic.library.exampleswithviewmodel.DefaultCalendarViewState
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.Month

@@ -9,7 +9,7 @@ import com.leosvjetlicic.calendarlibrary.ui.calendarday.singleday.ICalendarDay
  * grid-like structure where each row represents a week and each item represents a day.
  *
  * @param days A list of lists where each inner list represents a week in the calendar. Each item in
- *             these inner lists is an implementation of [ICalendarDay.kt], representing individual days.
+ *             these inner lists is an implementation of [ICalendarHelper.kt], representing individual days.
  *             This structure allows for displaying days in a week-by-week format, facilitating the
  *             rendering of a complete month or other time periods in a calendar view.
  */

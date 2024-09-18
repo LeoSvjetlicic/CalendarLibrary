@@ -1,5 +1,7 @@
 package com.leosvjetlicic.library.exampleswithviewmodel.viewmodels
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.leosvjetlicic.calendarlibrary.ui.calendar.ICalendarViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.CalendarDaysViewState
 import com.leosvjetlicic.calendarlibrary.utils.DateHelper.getMiddleDate
@@ -120,5 +122,21 @@ class RangeViewModel(
             newDaysViewState,
             selected
         )
+    }
+}
+
+@Suppress("UNCHECKED_CAST")
+class RangeViewModelFactory(
+    val helper: RangeCalendarHelper,
+    val selected: Selected,
+    val onCopy: (ICalendarViewState, CalendarDaysViewState, Selected) -> ICalendarViewState
+) : ViewModelProvider.Factory {
+
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return RangeViewModel(
+            helper = helper,
+            selected = selected,
+            copyViewState = onCopy
+        ) as T
     }
 }

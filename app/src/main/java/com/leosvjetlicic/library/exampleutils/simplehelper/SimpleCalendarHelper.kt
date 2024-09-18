@@ -6,6 +6,7 @@ import com.leosvjetlicic.calendarlibrary.ui.calendarheader.CalendarHeaderViewSta
 import com.leosvjetlicic.calendarlibrary.ui.calendarweekdays.CalendarWeekDaysViewState
 import com.leosvjetlicic.calendarlibrary.utils.BaseCalendarHelper
 import com.leosvjetlicic.calendarlibrary.utils.Selected
+import com.leosvjetlicic.library.examples.simpleexample.SimpleCalendarViewState
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.Month
@@ -34,10 +35,10 @@ class SimpleCalendarHelper(
         monthStyle: TextStyle,
         locale: Locale,
         selected: Selected?
-    ): com.leosvjetlicic.library.examples.simpleexample.SimpleCalendarViewState {
+    ): SimpleCalendarViewState {
         val currentDay = LocalDate.now()
         val weeks = generateWeeks(year, month)
-        return com.leosvjetlicic.library.examples.simpleexample.SimpleCalendarViewState(
+        return SimpleCalendarViewState(
             headerViewState = CalendarHeaderViewState(
                 currentDate = month.getDisplayName(monthStyle, locale) + " $year"
             ),

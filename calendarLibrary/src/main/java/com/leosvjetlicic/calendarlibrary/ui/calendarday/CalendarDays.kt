@@ -15,14 +15,14 @@ import java.time.LocalDate
  *
  * @param viewState The state object containing the days to be displayed in the calendar. It should be
  *                  an instance of [CalendarDaysViewState], which includes a list of weeks where each
- *                  week is represented as a list of [ICalendarDay.kt] objects.
+ *                  week is represented as a list of [ICalendarHelper.kt] objects.
  * @param modifier A [Modifier] to apply customizations such as padding, size, or other layout adjustments
  *                 to the entire column of days.
  * @param onClick A lambda function triggered when a day is clicked. It receives a [LocalDate] representing
  *                 the clicked day. The default is an empty lambda, meaning no action occurs if not explicitly provided.
  * @param dayContent A composable function to render each row of days. It defaults to [DefaultCalendarDaysRow],
  *                   which uses the provided view state and click handler to display each row. The function
- *                   takes a list of [ICalendarDay.kt] for each week and renders it accordingly.
+ *                   takes a list of [ICalendarHelper.kt] for each week and renders it accordingly.
  */
 @Composable
 fun CalendarDays(

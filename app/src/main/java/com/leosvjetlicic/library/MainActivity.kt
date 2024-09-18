@@ -3,36 +3,41 @@ package com.leosvjetlicic.library
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.leosvjetlicic.calendarlibrary.ui.calendar.DefaultCalendarViewState
+import androidx.compose.ui.unit.sp
 import com.leosvjetlicic.calendarlibrary.ui.calendar.ICalendarViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.singleday.CalendarDayViewState
 import com.leosvjetlicic.calendarlibrary.utils.DateHelper.getMiddleDate
 import com.leosvjetlicic.calendarlibrary.utils.ICalendarHelper
 import com.leosvjetlicic.calendarlibrary.utils.Selected
 import com.leosvjetlicic.calendarlibrary.viewmodel.BaseViewModel
+import com.leosvjetlicic.calendarlibrary.viewmodel.BaseViewModelFactory
 import com.leosvjetlicic.library.examples.defaultexample.DefaultCalendarExample
 import com.leosvjetlicic.library.examples.rangeexample.RangeCalendarDay
 import com.leosvjetlicic.library.examples.rangeexample.RangeCalendarExample
 import com.leosvjetlicic.library.examples.rangeexample.RangeCalendarViewState
 import com.leosvjetlicic.library.examples.simpleexample.SimpleCalendarExample
 import com.leosvjetlicic.library.examples.simpleexample.SimpleCalendarViewState
+import com.leosvjetlicic.library.exampleswithviewmodel.DefaultCalendarViewState
 import com.leosvjetlicic.library.exampleswithviewmodel.DefaultCalendarWithViewModel
 import com.leosvjetlicic.library.exampleswithviewmodel.RangeCalendarWithViewModel
-import com.leosvjetlicic.library.exampleswithviewmodel.SimpleCalendarWithViewModel
 import com.leosvjetlicic.library.exampleswithviewmodel.viewmodels.RangeViewModel
+import com.leosvjetlicic.library.exampleswithviewmodel.viewmodels.RangeViewModelFactory
 import com.leosvjetlicic.library.exampleutils.defaulthelper.DefaultCalendarHelper
 import com.leosvjetlicic.library.exampleutils.rangehelper.RangeCalendarHelper
 import com.leosvjetlicic.library.exampleutils.simplehelper.SimpleCalendarHelper
@@ -52,7 +57,16 @@ class MainActivity : ComponentActivity() {
             DayOfWeek.SUNDAY,
         )
     )
-    private val helper2 = RangeCalendarHelper(
+    private val helperWorkDays = SimpleCalendarHelper(
+        listOf(
+            DayOfWeek.MONDAY,
+            DayOfWeek.TUESDAY,
+            DayOfWeek.WEDNESDAY,
+            DayOfWeek.THURSDAY,
+            DayOfWeek.FRIDAY,
+        )
+    )
+    private val helper3 = RangeCalendarHelper(
         listOf(
             DayOfWeek.SUNDAY,
             DayOfWeek.MONDAY,
@@ -63,27 +77,37 @@ class MainActivity : ComponentActivity() {
             DayOfWeek.SATURDAY,
         )
     )
-    private val helperWorkDays = SimpleCalendarHelper(
-        listOf(
-            DayOfWeek.MONDAY,
-            DayOfWeek.TUESDAY,
-            DayOfWeek.WEDNESDAY,
-            DayOfWeek.THURSDAY,
-            DayOfWeek.FRIDAY,
-        )
-    )
 
+    val viewModel1 by viewModels<BaseViewModel> {
+        BaseViewModelFactory(
+            helper = helperWorkDays,
+            selected = Selected.SingleDay(null)
+        ) { viewState, daysViewState, _ ->
+            (viewState as SimpleCalendarViewState).copy(daysViewState = daysViewState)
+        }
+    }
+
+    val viewModel2 by viewModels<RangeViewModel> {
+        RangeViewModelFactory(
+            helper3,
+            selected = Selected.DayRange(null, null)
+        ) { viewState, daysViewState, selectedRange ->
+            (viewState as RangeCalendarViewState).copy(
+                daysViewState = daysViewState,
+                selectedRange = selectedRange as Selected.DayRange
+            )
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             LibraryTheme {
                 LazyColumn {
-                    item { Examples(helper1, helper2, helperWorkDays) }
+                    item { Examples(helper1, helper3, helperWorkDays) }
                     item {
                         ExamplesWithViewModels(
-                            helper1 = helper1,
-                            helper2 = helper2,
-                            weekDaysHelper = helperWorkDays
+                            viewModel1 = viewModel1,
+                            viewModel2 = viewModel2
                         )
                     }
                 }
@@ -245,34 +269,19 @@ fun Examples(helper1: ICalendarHelper, helper2: ICalendarHelper, weekDaysHelper:
 
 @Composable
 fun ExamplesWithViewModels(
-    helper1: DefaultCalendarHelper,
-    weekDaysHelper: SimpleCalendarHelper,
-    helper2: RangeCalendarHelper,
+    viewModel1: BaseViewModel,
+    viewModel2: RangeViewModel,
     modifier: Modifier = Modifier
 ) {
-    val viewModel1 by remember {
-        mutableStateOf(BaseViewModel(helper1) { viewState, daysViewState, _ ->
-            (viewState as DefaultCalendarViewState).copy(daysViewState = daysViewState)
-        })
-    }
-    val viewModel2 by remember {
-        mutableStateOf(BaseViewModel(weekDaysHelper) { viewState, daysViewState, _ ->
-            (viewState as SimpleCalendarViewState).copy(daysViewState = daysViewState)
-        })
-    }
-    val viewModel3 by remember {
-        mutableStateOf(RangeViewModel(helper2) { viewState, daysViewState, selectedRange ->
-            (viewState as RangeCalendarViewState).copy(
-                daysViewState = daysViewState,
-                selectedRange = selectedRange as Selected.DayRange
-            )
-        })
-    }
     Column(modifier = modifier) {
+        Spacer(modifier = Modifier.height(20.dp))
+        Text(
+            "ViewModel examples",
+            fontSize = 32.sp,
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        )
         DefaultCalendarWithViewModel(viewModel1)
         Spacer(modifier = Modifier.height(20.dp))
-        SimpleCalendarWithViewModel(viewModel2)
-        Spacer(modifier = Modifier.height(20.dp))
-        RangeCalendarWithViewModel(viewModel3)
+        RangeCalendarWithViewModel(viewModel2)
     }
 }

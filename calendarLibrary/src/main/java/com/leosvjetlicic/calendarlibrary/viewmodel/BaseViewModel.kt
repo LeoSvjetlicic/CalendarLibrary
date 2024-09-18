@@ -3,6 +3,7 @@ package com.leosvjetlicic.calendarlibrary.viewmodel
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.leosvjetlicic.calendarlibrary.ui.calendar.ICalendarViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.CalendarDaysViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.singleday.CalendarDayViewState
@@ -33,7 +34,7 @@ import java.time.Month
  *                       and selected date.
  */
 open class BaseViewModel(
-    private val helper: ICalendarHelper,
+    val helper: ICalendarHelper,
     protected var selected: Selected = Selected.SingleDay(null),
     val copyViewState: (ICalendarViewState, CalendarDaysViewState, Selected) -> ICalendarViewState
 ) : ViewModel() {
@@ -143,5 +144,21 @@ open class BaseViewModel(
             month = month.value,
             selected = selected
         )
+    }
+}
+
+@Suppress("UNCHECKED_CAST")
+class BaseViewModelFactory(
+    private val helper: ICalendarHelper,
+    val selected: Selected,
+    private val onCopy: (ICalendarViewState, CalendarDaysViewState, Selected) -> ICalendarViewState
+) : ViewModelProvider.Factory {
+
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return BaseViewModel(
+            helper = helper,
+            selected = selected,
+            copyViewState = onCopy
+        ) as T
     }
 }

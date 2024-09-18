@@ -1,5 +1,6 @@
-package com.leosvjetlicic.calendarlibrary.ui.calendar
+package com.leosvjetlicic.library.exampleswithviewmodel
 
+import com.leosvjetlicic.calendarlibrary.ui.calendar.ICalendarViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.CalendarDaysViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarheader.CalendarHeaderViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarweekdays.CalendarWeekDaysViewState

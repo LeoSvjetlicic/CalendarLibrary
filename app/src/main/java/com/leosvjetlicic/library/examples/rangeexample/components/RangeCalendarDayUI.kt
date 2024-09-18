@@ -18,7 +18,7 @@ import java.time.LocalDate
  *
  * This function is intended to be used within a `RowScope`.
  *
- * @param day The `ICalendarDay.kt` object representing the day data.
+ * @param day The `ICalendarHelper.kt` object representing the day data.
  * @param modifier (Optional) A modifier to style the overall layout of the day UI.
  * @param onClick A callback function to handle clicks on the day.
  * @param content (Optional) A lambda that defines the content to be displayed within the day. Defaults to rendering a `RangeCalendarDayContent`.
