@@ -198,6 +198,7 @@ data object SecondTrailingAction : CalendarHeaderAction
 ```
 
 The data objects are placed and used in the DefaultCalendarExample for example like this
+
 ![plot](./images/HeaderExplanation.png)
 and this is how they are used in code (we pass different data objects as parameters for different
 actions in the onAction function):
@@ -238,6 +239,7 @@ fun BaseCalendarHeader(
 
 And by adding modifiers we made the calendar look better, and that is only the beginning because of
 calendars customizability we can update and change the look of every part of the calendar.
+
 ![plot](./images/Calendar.png)
 
 ![plot](./images/DefaultCalendar.png)
@@ -627,6 +629,7 @@ modifier = modifier
 ```
 
 The result looks like this:
+
 ![plot](./images/CalendarDays.png)
 
 #### Extra Content
@@ -666,9 +669,11 @@ content = {
 ```
 
 and it looks like this:
+
 ![plot](./images/ExtraContent.png)
 
 This is the finished product, completely different than the `DefaultCalendarExample`:
+
 ![plot](./images/ExtraContent.png)
 
 ### RangeCalendarExample
