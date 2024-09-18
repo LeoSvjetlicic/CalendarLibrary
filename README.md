@@ -674,7 +674,7 @@ and it looks like this:
 
 This is the finished product, completely different than the `DefaultCalendarExample`:
 
-![plot](./images/ExtraContent.png)
+![plot](./images/SimpleCalendar.png)
 
 ### RangeCalendarExample
 
