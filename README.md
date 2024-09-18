@@ -12,7 +12,7 @@ Add the dependency below to your module's build.gradle file:
 
 ```gradle
 dependencies {
-    implementation("io.github.leosvjetlicic:calendar-library:1.0.0")
+    implementation("io.github.leosvjetlicic:calendar-library:1.1.0")
 }
 ```
 
