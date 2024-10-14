@@ -31,9 +31,9 @@ import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.DefaultCalendarWi
 import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.RangeCalendarWithViewModel
 import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.viewmodels.RangeViewModel
 import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.viewmodels.RangeViewModelFactory
-import com.leosvjetlicic.calendarlibrary.exampleutils.defaulthelper.DefaultCalendarHelper
-import com.leosvjetlicic.calendarlibrary.exampleutils.rangehelper.RangeCalendarHelper
-import com.leosvjetlicic.calendarlibrary.exampleutils.simplehelper.SimpleCalendarHelper
+import com.leosvjetlicic.calendarlibrary.utils.DefaultCalendarHelper
+import com.leosvjetlicic.calendarlibrary.utils.RangeCalendarHelper
+import com.leosvjetlicic.calendarlibrary.utils.SimpleCalendarHelper
 import com.leosvjetlicic.calendarlibrary.theme.LibraryTheme
 import com.leosvjetlicic.calendarlibrary.ui.calendar.ICalendarViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.singleday.CalendarDayViewState
@@ -117,24 +117,24 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Examples(helper1: ICalendarHelper, helper2: ICalendarHelper, weekDaysHelper: ICalendarHelper) {
+fun Examples(defaultCalendarHelper: ICalendarHelper, rangeCalendarHelper: ICalendarHelper, simpleCalendarHelper: ICalendarHelper) {
     val currentMonth by remember {
         mutableStateOf(LocalDate.now().month)
     }
     val currentYear by remember {
         mutableIntStateOf(LocalDate.now().year)
     }
-    var viewState1: ICalendarViewState by remember {
-        mutableStateOf(helper1.generateCalendarViewState())
+    var defaultViewState: ICalendarViewState by remember {
+        mutableStateOf(defaultCalendarHelper.generateCalendarViewState())
     }
 
-    var viewState2 by remember {
-        mutableStateOf(weekDaysHelper.generateCalendarViewState())
+    var simpleViewState by remember {
+        mutableStateOf(simpleCalendarHelper.generateCalendarViewState())
     }
 
-    var viewState3 by remember {
+    var rangeViewState by remember {
         mutableStateOf(
-            helper2.generateCalendarViewState(
+            rangeCalendarHelper.generateCalendarViewState(
                 year = currentYear,
                 month = currentMonth,
                 selected = Selected.DayRange(null, null)
@@ -143,10 +143,10 @@ fun Examples(helper1: ICalendarHelper, helper2: ICalendarHelper, weekDaysHelper:
     }
     DefaultCalendarExample(
         modifier = Modifier.width(300.dp),
-        viewState = viewState1,
+        viewState = defaultViewState,
         onHeaderAction = {},
         onDayClick = {
-            val newDays = viewState1.daysViewState.days.map { week ->
+            val newDays = defaultViewState.daysViewState.days.map { week ->
                 week.map { d ->
                     d as CalendarDayViewState
                     if (d.isSelected) {
@@ -156,19 +156,19 @@ fun Examples(helper1: ICalendarHelper, helper2: ICalendarHelper, weekDaysHelper:
                     }
                 }
             }
-            val newDaysViewState = viewState1.daysViewState.copy(
+            val newDaysViewState = defaultViewState.daysViewState.copy(
                 days = newDays
             )
-            viewState1 =
-                (viewState1 as DefaultCalendarViewState).copy(daysViewState = newDaysViewState)
+            defaultViewState =
+                (defaultViewState as DefaultCalendarViewState).copy(daysViewState = newDaysViewState)
         }
     )
     Spacer(modifier = Modifier.height(30.dp))
     SimpleCalendarExample(
-        viewState = viewState2 as SimpleCalendarViewState,
+        viewState = simpleViewState as SimpleCalendarViewState,
         onHeaderAction = {},
         onDayClick = {
-            val newDays = viewState2.daysViewState.days.map { week ->
+            val newDays = simpleViewState.daysViewState.days.map { week ->
                 week.map { d ->
                     d as CalendarDayViewState
                     if (d.isSelected) {
@@ -178,24 +178,24 @@ fun Examples(helper1: ICalendarHelper, helper2: ICalendarHelper, weekDaysHelper:
                     }
                 }
             }
-            val newDaysViewState = viewState2.daysViewState.copy(
+            val newDaysViewState = simpleViewState.daysViewState.copy(
                 days = newDays
             )
-            viewState2 =
-                (viewState2 as SimpleCalendarViewState).copy(daysViewState = newDaysViewState)
+            simpleViewState =
+                (simpleViewState as SimpleCalendarViewState).copy(daysViewState = newDaysViewState)
 
         })
     Spacer(modifier = Modifier.height(30.dp))
     RangeCalendarExample(
-        viewState = viewState3,
+        viewState = rangeViewState,
         onHeaderAction = {},
         onDayClick = { clickedDay ->
             var newStartDate =
-                (viewState3 as RangeCalendarViewState).selectedRange.startDay
+                (rangeViewState as RangeCalendarViewState).selectedRange.startDay
             var newEndDate =
-                (viewState3 as RangeCalendarViewState).selectedRange.endDay
+                (rangeViewState as RangeCalendarViewState).selectedRange.endDay
             val selectedDaysSum =
-                viewState3.daysViewState.days.sumOf { week -> week.count { day -> day.isSelected } }
+                rangeViewState.daysViewState.days.sumOf { week -> week.count { day -> day.isSelected } }
 
             when (selectedDaysSum) {
                 0 -> newStartDate = clickedDay
@@ -243,7 +243,7 @@ fun Examples(helper1: ICalendarHelper, helper2: ICalendarHelper, weekDaysHelper:
                 }
             }
 
-            val newDays = viewState3.daysViewState.days.map { week ->
+            val newDays = rangeViewState.daysViewState.days.map { week ->
                 week.map { d ->
                     d as RangeCalendarDay
                     when (d.value) {
@@ -260,8 +260,8 @@ fun Examples(helper1: ICalendarHelper, helper2: ICalendarHelper, weekDaysHelper:
                 }
             }
 
-            viewState3 = (viewState3 as RangeCalendarViewState).copy(
-                daysViewState = viewState3.daysViewState.copy(days = newDays),
+            rangeViewState = (rangeViewState as RangeCalendarViewState).copy(
+                daysViewState = rangeViewState.daysViewState.copy(days = newDays),
                 selectedRange = Selected.DayRange(newStartDate, newEndDate)
             )
         })

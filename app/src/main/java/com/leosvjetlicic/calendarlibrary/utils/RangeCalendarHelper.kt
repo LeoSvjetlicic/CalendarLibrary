@@ -1,11 +1,9 @@
-package com.leosvjetlicic.calendarlibrary.exampleutils.rangehelper
+package com.leosvjetlicic.calendarlibrary.utils
 
 import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarDay
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.CalendarDaysViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarheader.CalendarHeaderViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarweekdays.CalendarWeekDaysViewState
-import com.leosvjetlicic.calendarlibrary.utils.BaseCalendarHelper
-import com.leosvjetlicic.calendarlibrary.utils.Selected
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.Month

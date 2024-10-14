@@ -3,7 +3,7 @@ package com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarDay
-import com.leosvjetlicic.calendarlibrary.exampleutils.rangehelper.RangeCalendarHelper
+import com.leosvjetlicic.calendarlibrary.utils.RangeCalendarHelper
 import com.leosvjetlicic.calendarlibrary.ui.calendar.ICalendarViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.CalendarDaysViewState
 import com.leosvjetlicic.calendarlibrary.utils.DateHelper.getMiddleDate
