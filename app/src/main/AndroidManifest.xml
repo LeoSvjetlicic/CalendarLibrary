@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Library"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.leosvjetlicic.calendarlibrary.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Library">
             <intent-filter>
