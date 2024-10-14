@@ -17,5 +17,6 @@ data class RangeCalendarDay(
     override val isSelected: Boolean,
     override val isCurrentMonth: Boolean,
     override val isToday: Boolean,
-    val isInRange: Boolean
+    val isInRange: Boolean,
+    val isFirstDayInRange: Boolean
 ) : ICalendarDay

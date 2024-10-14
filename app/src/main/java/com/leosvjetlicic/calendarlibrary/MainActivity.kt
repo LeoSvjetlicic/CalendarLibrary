@@ -27,19 +27,20 @@ import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarView
 import com.leosvjetlicic.calendarlibrary.examples.simpleexample.SimpleCalendarExample
 import com.leosvjetlicic.calendarlibrary.examples.simpleexample.SimpleCalendarViewState
 import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.DefaultCalendarViewState
+import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.DefaultCalendarWithRangeWithViewModel
 import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.DefaultCalendarWithViewModel
 import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.RangeCalendarWithViewModel
 import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.viewmodels.RangeViewModel
 import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.viewmodels.RangeViewModelFactory
-import com.leosvjetlicic.calendarlibrary.utils.DefaultCalendarHelper
-import com.leosvjetlicic.calendarlibrary.utils.RangeCalendarHelper
-import com.leosvjetlicic.calendarlibrary.utils.SimpleCalendarHelper
 import com.leosvjetlicic.calendarlibrary.theme.LibraryTheme
 import com.leosvjetlicic.calendarlibrary.ui.calendar.ICalendarViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.singleday.CalendarDayViewState
 import com.leosvjetlicic.calendarlibrary.utils.DateHelper.getMiddleDate
+import com.leosvjetlicic.calendarlibrary.utils.DefaultCalendarHelper
 import com.leosvjetlicic.calendarlibrary.utils.ICalendarHelper
+import com.leosvjetlicic.calendarlibrary.utils.RangeCalendarHelper
 import com.leosvjetlicic.calendarlibrary.utils.Selected
+import com.leosvjetlicic.calendarlibrary.utils.SimpleCalendarHelper
 import com.leosvjetlicic.calendarlibrary.viewmodel.BaseViewModel
 import com.leosvjetlicic.calendarlibrary.viewmodel.BaseViewModelFactory
 import java.time.DayOfWeek
@@ -103,11 +104,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             LibraryTheme {
                 LazyColumn {
-                    item { Examples(defaultCalendarHelper, rangeCalendarHelper, simpleCalendarHelper) }
+                    item {
+                        DefaultCalendarWithRangeWithViewModel(rangeCalendarViewModel)
+
+                        Examples(defaultCalendarHelper, rangeCalendarHelper, simpleCalendarHelper)
+                    }
                     item {
                         ExamplesWithViewModels(
-                            viewModel1 = simpleCalendarViewModel,
-                            viewModel2 = rangeCalendarViewModel
+                            simpleCalendarViewModel = simpleCalendarViewModel,
+                            rangeCalendarViewModel = rangeCalendarViewModel
                         )
                     }
                 }
@@ -247,9 +252,16 @@ fun Examples(defaultCalendarHelper: ICalendarHelper, rangeCalendarHelper: ICalen
                 week.map { d ->
                     d as RangeCalendarDay
                     when (d.value) {
-                        newStartDate, newEndDate -> d.copy(
+                        newStartDate -> d.copy(
                             isSelected = true,
-                            isInRange = false
+                            isInRange = newEndDate != null,
+                            isFirstDayInRange = true
+                        )
+
+                        newEndDate -> d.copy(
+                            isSelected = true,
+                            isInRange = newStartDate != null,
+                            isFirstDayInRange = false
                         )
 
                         else -> d.copy(
@@ -269,8 +281,8 @@ fun Examples(defaultCalendarHelper: ICalendarHelper, rangeCalendarHelper: ICalen
 
 @Composable
 fun ExamplesWithViewModels(
-    viewModel1: BaseViewModel,
-    viewModel2: RangeViewModel,
+    simpleCalendarViewModel: BaseViewModel,
+    rangeCalendarViewModel: RangeViewModel,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
@@ -280,8 +292,8 @@ fun ExamplesWithViewModels(
             fontSize = 32.sp,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
-        DefaultCalendarWithViewModel(viewModel1)
+        DefaultCalendarWithViewModel(simpleCalendarViewModel)
         Spacer(modifier = Modifier.height(20.dp))
-        RangeCalendarWithViewModel(viewModel2)
+        RangeCalendarWithViewModel(rangeCalendarViewModel)
     }
 }

@@ -17,6 +17,7 @@ import com.leosvjetlicic.calendarlibrary.ui.calendarday.singleday.BaseCalendarDa
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.singleday.BaseCalendarDayTextContent
 import com.leosvjetlicic.calendarlibrary.ui.colors.DarkGreen
 import com.leosvjetlicic.calendarlibrary.ui.colors.LightGreen
+import com.leosvjetlicic.calendarlibrary.ui.colors.LightPurple
 import java.time.LocalDate
 
 /**

@@ -39,7 +39,7 @@ fun RowScope.RangeCalendarDayUI(
         modifier = modifier
             .weight(1f)
             .then(
-                if (day is RangeCalendarDay && day.isInRange && day.isCurrentMonth) {
+                if (day is RangeCalendarDay && day.isInRange && day.isCurrentMonth && !day.isSelected) {
                     Modifier.background(
                         color = LightGreen.copy(alpha = 0.5f),
                         shape = RoundedCornerShape(0.dp)

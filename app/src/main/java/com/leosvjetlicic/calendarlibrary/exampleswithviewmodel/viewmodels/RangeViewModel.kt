@@ -3,10 +3,10 @@ package com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarDay
-import com.leosvjetlicic.calendarlibrary.utils.RangeCalendarHelper
 import com.leosvjetlicic.calendarlibrary.ui.calendar.ICalendarViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.CalendarDaysViewState
 import com.leosvjetlicic.calendarlibrary.utils.DateHelper.getMiddleDate
+import com.leosvjetlicic.calendarlibrary.utils.RangeCalendarHelper
 import com.leosvjetlicic.calendarlibrary.utils.Selected
 import com.leosvjetlicic.calendarlibrary.viewmodel.BaseViewModel
 import java.time.LocalDate
@@ -98,9 +98,16 @@ class RangeViewModel(
             week.map { d ->
                 d as RangeCalendarDay
                 when (d.value) {
-                    newStartDate, newEndDate -> d.copy(
+                    newStartDate -> d.copy(
                         isSelected = true,
-                        isInRange = false
+                        isInRange = newEndDate != null,
+                        isFirstDayInRange = true
+                    )
+
+                    newEndDate -> d.copy(
+                        isSelected = true,
+                        isInRange = newStartDate != null,
+                        isFirstDayInRange = false
                     )
 
                     else -> d.copy(
