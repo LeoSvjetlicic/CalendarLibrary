@@ -46,7 +46,7 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 
 class MainActivity : ComponentActivity() {
-    private val helper1 = DefaultCalendarHelper(
+    private val defaultCalendarHelper = DefaultCalendarHelper(
         listOf(
             DayOfWeek.MONDAY,
             DayOfWeek.TUESDAY,
@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
             DayOfWeek.SUNDAY,
         )
     )
-    private val helperWorkDays = SimpleCalendarHelper(
+    private val simpleCalendarHelper = SimpleCalendarHelper(
         listOf(
             DayOfWeek.MONDAY,
             DayOfWeek.TUESDAY,
@@ -66,7 +66,7 @@ class MainActivity : ComponentActivity() {
             DayOfWeek.FRIDAY,
         )
     )
-    private val helper3 = RangeCalendarHelper(
+    private val rangeCalendarHelper = RangeCalendarHelper(
         listOf(
             DayOfWeek.SUNDAY,
             DayOfWeek.MONDAY,
@@ -78,18 +78,18 @@ class MainActivity : ComponentActivity() {
         )
     )
 
-    val viewModel1 by viewModels<BaseViewModel> {
+    val simpleCalendarViewModel by viewModels<BaseViewModel> {
         BaseViewModelFactory(
-            helper = helperWorkDays,
+            helper = simpleCalendarHelper,
             selected = Selected.SingleDay(null)
         ) { viewState, daysViewState, _ ->
             (viewState as SimpleCalendarViewState).copy(daysViewState = daysViewState)
         }
     }
 
-    val viewModel2 by viewModels<RangeViewModel> {
+    val rangeCalendarViewModel by viewModels<RangeViewModel> {
         RangeViewModelFactory(
-            helper3,
+            rangeCalendarHelper,
             selected = Selected.DayRange(null, null)
         ) { viewState, daysViewState, selectedRange ->
             (viewState as RangeCalendarViewState).copy(
@@ -103,11 +103,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             LibraryTheme {
                 LazyColumn {
-                    item { Examples(helper1, helper3, helperWorkDays) }
+                    item { Examples(defaultCalendarHelper, rangeCalendarHelper, simpleCalendarHelper) }
                     item {
                         ExamplesWithViewModels(
-                            viewModel1 = viewModel1,
-                            viewModel2 = viewModel2
+                            viewModel1 = simpleCalendarViewModel,
+                            viewModel2 = rangeCalendarViewModel
                         )
                     }
                 }
