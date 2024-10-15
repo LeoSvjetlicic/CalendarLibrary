@@ -7,8 +7,22 @@ A calendar library with fully customizable UI and helper for generating the cale
 ![plot](./videos/Default.gif)
 ![plot](./videos/DefaultRange.gif)
 
+## Features
+* **Customizable** UI components for calendars
+* Easy handling of date selection and range selection
+* Easily extend functionality with custom features
+* Helper functions for **generating calendar data**
+* Integrates seamlessly with **Jetpack Compose ViewModel**
+
+
 ## Sample project
 The GIFs above showcase some examples provided in the sample app, you can download [here](https://github.com/LeoSvjetlicic/CalendarLibrary/archive/refs/heads/main.zip).
+
+To run the project:
+* Unzip the file.
+* Open the project in Android Studio.
+* Sync the Gradle files.
+* Run the app on an emulator or device.
 
 View the library's source code [here](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/calendarLibrary)
 
@@ -24,11 +38,12 @@ dependencies {
 ## Usage
 
 The library is separated into **3 main parts**:
-* **ViewState**: Defines what the UI will render and what the helper needs to output
-* **Helper**: Creates data for the calendar
-* **UI**: Renders the calendar and handles click events
+* **ViewState**: Defines what the UI will render and what data the helper should output.
+* **Helper**: Creates data for the calendar.
+* **UI**: Renders the calendar and handles click events.
 
 You can find how to use the library in the documentation links below.
+
 ### Examples
 
 * **[Default Calendar Example](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultcalendar)**
