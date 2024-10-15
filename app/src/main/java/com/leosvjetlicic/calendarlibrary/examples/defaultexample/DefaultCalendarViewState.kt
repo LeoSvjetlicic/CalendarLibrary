@@ -1,4 +1,4 @@
-package com.leosvjetlicic.calendarlibrary.exampleswithviewmodel
+package com.leosvjetlicic.calendarlibrary.examples.defaultexample
 
 import com.leosvjetlicic.calendarlibrary.ui.calendar.ICalendarViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.CalendarDaysViewState

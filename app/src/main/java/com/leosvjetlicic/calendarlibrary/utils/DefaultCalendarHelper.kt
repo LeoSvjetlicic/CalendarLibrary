@@ -1,6 +1,6 @@
 package com.leosvjetlicic.calendarlibrary.utils
 
-import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.DefaultCalendarViewState
+import com.leosvjetlicic.calendarlibrary.examples.defaultexample.DefaultCalendarViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.CalendarDaysViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.singleday.CalendarDayViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarheader.CalendarHeaderViewState

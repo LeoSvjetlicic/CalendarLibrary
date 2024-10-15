@@ -26,7 +26,7 @@ import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarExam
 import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarViewState
 import com.leosvjetlicic.calendarlibrary.examples.simpleexample.SimpleCalendarExample
 import com.leosvjetlicic.calendarlibrary.examples.simpleexample.SimpleCalendarViewState
-import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.DefaultCalendarViewState
+import com.leosvjetlicic.calendarlibrary.examples.defaultexample.DefaultCalendarViewState
 import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.DefaultCalendarWithRangeWithViewModel
 import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.DefaultCalendarWithViewModel
 import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.RangeCalendarWithViewModel
@@ -105,8 +105,6 @@ class MainActivity : ComponentActivity() {
             LibraryTheme {
                 LazyColumn {
                     item {
-                        DefaultCalendarWithRangeWithViewModel(rangeCalendarViewModel)
-
                         Examples(defaultCalendarHelper, rangeCalendarHelper, simpleCalendarHelper)
                     }
                     item {
@@ -286,14 +284,31 @@ fun ExamplesWithViewModels(
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
-        Spacer(modifier = Modifier.height(20.dp))
         Text(
             "ViewModel examples",
             fontSize = 32.sp,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
+        Spacer(modifier = Modifier.height(20.dp))
+        Text(
+            "Default example",
+            fontSize = 24.sp,
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        )
         DefaultCalendarWithViewModel(simpleCalendarViewModel)
         Spacer(modifier = Modifier.height(20.dp))
+        Text(
+            "Default Range example",
+            fontSize = 24.sp,
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        )
+        DefaultCalendarWithRangeWithViewModel(rangeCalendarViewModel)
+        Spacer(modifier = Modifier.height(20.dp))
+        Text(
+            "Range example",
+            fontSize = 24.sp,
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        )
         RangeCalendarWithViewModel(rangeCalendarViewModel)
     }
 }
