@@ -23,7 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
  *         Changing it will affect on the style of calendar day text
  */
 @Composable
-internal fun BaseCalendarWeekDays(
+fun BaseCalendarWeekDays(
     viewState: CalendarWeekDaysViewState,
     modifier: Modifier = Modifier,
     alignment: Alignment.Vertical = Alignment.CenterVertically,
