@@ -1,6 +1,6 @@
 package com.leosvjetlicic.calendarlibrary.utils
 
-import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarDayViewState
+import com.leosvjetlicic.calendarlibrary.examples.defaultrangeexample.DefaultRangeCalendarDayViewState
 import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.CalendarDaysViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarheader.CalendarHeaderViewState
@@ -15,7 +15,7 @@ import java.util.Locale
  * Class that enables you use a range of selected days in a calendar.
  * @param weekDays changing enables you to select what week day range to display.
  */
-class RangeCalendarHelper(
+class DefaultRangeCalendarHelper(
     override val weekDays: List<DayOfWeek>
 ) : BaseCalendarHelper(weekDays) {
     /**
@@ -40,7 +40,7 @@ class RangeCalendarHelper(
         } else {
             Selected.DayRange(null, null)
         }
-        return RangeCalendarViewState(
+        return com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarViewState(
             headerViewState = CalendarHeaderViewState(
                 currentDate = month.getDisplayName(monthStyle, locale) + " $year"
             ),
@@ -48,11 +48,12 @@ class RangeCalendarHelper(
             daysViewState = CalendarDaysViewState(
                 days = weeks.map { days ->
                     days.map { day ->
-                        RangeCalendarDayViewState(
+                        DefaultRangeCalendarDayViewState(
                             value = day,
                             isSelected = day == tempSelected.startDay || day == tempSelected.endDay,
                             isToday = day == currentDay,
                             isCurrentMonth = day.monthValue == month.value && day.year == year,
+                            isFirstDayInRange = tempSelected.startDay == day,
                             isInRange = if (tempSelected.startDay != null && tempSelected.endDay != null) {
                                 tempSelected.startDay!! <= day && tempSelected.endDay!! >= day
                             } else {

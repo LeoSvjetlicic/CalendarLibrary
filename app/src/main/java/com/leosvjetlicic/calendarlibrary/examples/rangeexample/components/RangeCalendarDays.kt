@@ -26,7 +26,7 @@ fun RangeCalendarDays(
     modifier: Modifier = Modifier,
     onClick: (LocalDate) -> Unit = {},
     content: @Composable RowScope.(ICalendarDay) -> Unit = { day ->
-        RangeCalendarDayUI(day = day, onClick = onClick)
+        RangeCalendarDay(day = day, onClick = onClick)
     }
 ) {
     CalendarDays(

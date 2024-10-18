@@ -5,8 +5,7 @@ This example shows the how to use the basic functionalities and UI of the librar
 The end result will look like this:
 ![plot](./res/DefaultCalendar.png)
 
-The guide is separated into these subtopics:
-
+**Content**:
 * [ViewState](#viewstate)
 * [Helper](#helper)
 * [UI](#ui)
@@ -284,7 +283,6 @@ val simpleCalendarViewModel by viewModels<BaseViewModel> {
 
 In this guide, we covered the basics on how to use the library and all its parts.
 
-You can also see more complicated
-examples [here](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/docs/examples).
+You can see more complicated examples [here](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/docs/examples).
 
 Good luck!

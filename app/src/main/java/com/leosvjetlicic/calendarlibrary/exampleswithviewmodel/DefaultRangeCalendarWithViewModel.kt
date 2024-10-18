@@ -4,11 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.leosvjetlicic.calendarlibrary.examples.defaultrangeexample.DefaultRangeCalendarExample
 import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarViewState
-import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.viewmodels.RangeViewModel
+import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.viewmodels.DefaultRangeViewModel
 
 @Composable
 fun DefaultCalendarWithRangeWithViewModel(
-    viewModel: RangeViewModel,
+    viewModel: DefaultRangeViewModel,
     modifier: Modifier = Modifier
 ) {
     DefaultRangeCalendarExample(

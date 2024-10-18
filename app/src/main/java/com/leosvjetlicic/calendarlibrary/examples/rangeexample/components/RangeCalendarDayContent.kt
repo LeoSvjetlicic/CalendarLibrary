@@ -12,12 +12,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarDay
+import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarDayViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.singleday.BaseCalendarDayContent
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.singleday.BaseCalendarDayTextContent
 import com.leosvjetlicic.calendarlibrary.ui.colors.DarkGreen
 import com.leosvjetlicic.calendarlibrary.ui.colors.LightGreen
-import com.leosvjetlicic.calendarlibrary.ui.colors.LightPurple
 import java.time.LocalDate
 
 /**
@@ -31,7 +30,7 @@ import java.time.LocalDate
  */
 @Composable
 fun BoxScope.RangeCalendarDayContent(
-    day: RangeCalendarDay,
+    day: RangeCalendarDayViewState,
     modifier: Modifier = Modifier,
     onClick: (LocalDate) -> Unit
 ) {

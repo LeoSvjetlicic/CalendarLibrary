@@ -7,7 +7,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarDay
+import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarDayViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.singleday.CalendarDay
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.singleday.ICalendarDay
 import com.leosvjetlicic.calendarlibrary.ui.colors.LightGreen
@@ -24,13 +24,13 @@ import java.time.LocalDate
  * @param content (Optional) A lambda that defines the content to be displayed within the day. Defaults to rendering a `RangeCalendarDayContent`.
  */
 @Composable
-fun RowScope.RangeCalendarDayUI(
+fun RowScope.RangeCalendarDay(
     day: ICalendarDay,
     modifier: Modifier = Modifier,
     onClick: (LocalDate) -> Unit,
     content: @Composable BoxScope.() -> Unit = {
         RangeCalendarDayContent(
-            day = day as RangeCalendarDay,
+            day = day as RangeCalendarDayViewState,
             onClick = onClick
         )
     }
@@ -39,7 +39,7 @@ fun RowScope.RangeCalendarDayUI(
         modifier = modifier
             .weight(1f)
             .then(
-                if (day is RangeCalendarDay && day.isInRange && day.isCurrentMonth && !day.isSelected) {
+                if (day is RangeCalendarDayViewState && day.isInRange && day.isCurrentMonth && !day.isSelected) {
                     Modifier.background(
                         color = LightGreen.copy(alpha = 0.5f),
                         shape = RoundedCornerShape(0.dp)

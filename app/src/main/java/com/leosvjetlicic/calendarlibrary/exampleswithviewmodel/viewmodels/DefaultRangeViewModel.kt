@@ -2,11 +2,11 @@ package com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarDayViewState
+import com.leosvjetlicic.calendarlibrary.examples.defaultrangeexample.DefaultRangeCalendarDayViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendar.ICalendarViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.CalendarDaysViewState
 import com.leosvjetlicic.calendarlibrary.utils.DateHelper.getMiddleDate
-import com.leosvjetlicic.calendarlibrary.utils.RangeCalendarHelper
+import com.leosvjetlicic.calendarlibrary.utils.DefaultRangeCalendarHelper
 import com.leosvjetlicic.calendarlibrary.utils.Selected
 import com.leosvjetlicic.calendarlibrary.viewmodel.BaseViewModel
 import java.time.LocalDate
@@ -21,8 +21,8 @@ import java.time.LocalDate
  * the "in range" state for individual days within the calendar view state.
  * For parameter details @see [BaseViewModel]
  */
-class RangeViewModel(
-    helper: RangeCalendarHelper,
+class DefaultRangeViewModel(
+    helper: DefaultRangeCalendarHelper,
     selected: Selected = Selected.DayRange(null, null),
     copyViewState: (ICalendarViewState, CalendarDaysViewState, Selected) -> ICalendarViewState
 ) : BaseViewModel(helper, selected, copyViewState) {
@@ -96,16 +96,18 @@ class RangeViewModel(
 
         val newDays = viewState.value.daysViewState.days.map { week ->
             week.map { d ->
-                d as RangeCalendarDayViewState
+                d as DefaultRangeCalendarDayViewState
                 when (d.value) {
                     newStartDate -> d.copy(
                         isSelected = true,
-                        isInRange = newEndDate != null
+                        isInRange = newEndDate != null,
+                        isFirstDayInRange = true
                     )
 
                     newEndDate -> d.copy(
                         isSelected = true,
-                        isInRange = newStartDate != null
+                        isInRange = newStartDate != null,
+                        isFirstDayInRange = false
                     )
 
                     else -> d.copy(
@@ -131,14 +133,14 @@ class RangeViewModel(
 }
 
 @Suppress("UNCHECKED_CAST")
-class RangeViewModelFactory(
-    val helper: RangeCalendarHelper,
+class DefaultRangeViewModelFactory(
+    val helper: DefaultRangeCalendarHelper,
     val selected: Selected,
     val onCopy: (ICalendarViewState, CalendarDaysViewState, Selected) -> ICalendarViewState
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return RangeViewModel(
+        return DefaultRangeViewModel(
             helper = helper,
             selected = selected,
             copyViewState = onCopy

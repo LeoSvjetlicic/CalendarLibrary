@@ -8,7 +8,7 @@ The finished product will look like this:
 
 ![plot](./res/SimpleCalendar.png)
 
-The guide is separated into these subtopics:
+**Content**:
 * [ViewState](#viewstate)
 * [Helper](#helper)
 * [UI](#ui)

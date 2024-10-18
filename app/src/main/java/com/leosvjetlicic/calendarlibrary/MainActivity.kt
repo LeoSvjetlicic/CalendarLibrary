@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.leosvjetlicic.calendarlibrary.examples.defaultexample.DefaultCalendarExample
-import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarDay
+import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarDayViewState
 import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarExample
 import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarViewState
 import com.leosvjetlicic.calendarlibrary.examples.simpleexample.SimpleCalendarExample
@@ -30,6 +30,8 @@ import com.leosvjetlicic.calendarlibrary.examples.defaultexample.DefaultCalendar
 import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.DefaultCalendarWithRangeWithViewModel
 import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.DefaultCalendarWithViewModel
 import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.RangeCalendarWithViewModel
+import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.viewmodels.DefaultRangeViewModel
+import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.viewmodels.DefaultRangeViewModelFactory
 import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.viewmodels.RangeViewModel
 import com.leosvjetlicic.calendarlibrary.exampleswithviewmodel.viewmodels.RangeViewModelFactory
 import com.leosvjetlicic.calendarlibrary.theme.LibraryTheme
@@ -37,6 +39,7 @@ import com.leosvjetlicic.calendarlibrary.ui.calendar.ICalendarViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.singleday.CalendarDayViewState
 import com.leosvjetlicic.calendarlibrary.utils.DateHelper.getMiddleDate
 import com.leosvjetlicic.calendarlibrary.utils.DefaultCalendarHelper
+import com.leosvjetlicic.calendarlibrary.utils.DefaultRangeCalendarHelper
 import com.leosvjetlicic.calendarlibrary.utils.ICalendarHelper
 import com.leosvjetlicic.calendarlibrary.utils.RangeCalendarHelper
 import com.leosvjetlicic.calendarlibrary.utils.Selected
@@ -78,6 +81,17 @@ class MainActivity : ComponentActivity() {
             DayOfWeek.SATURDAY,
         )
     )
+    private val defaultRangeCalendarHelper = DefaultRangeCalendarHelper(
+        listOf(
+            DayOfWeek.SUNDAY,
+            DayOfWeek.MONDAY,
+            DayOfWeek.TUESDAY,
+            DayOfWeek.WEDNESDAY,
+            DayOfWeek.THURSDAY,
+            DayOfWeek.FRIDAY,
+            DayOfWeek.SATURDAY,
+        )
+    )
 
     val simpleCalendarViewModel by viewModels<BaseViewModel> {
         BaseViewModelFactory(
@@ -99,6 +113,17 @@ class MainActivity : ComponentActivity() {
             )
         }
     }
+    val defaultRangeCalendarViewModel by viewModels<DefaultRangeViewModel> {
+        DefaultRangeViewModelFactory(
+            defaultRangeCalendarHelper,
+            selected = Selected.DayRange(null, null)
+        ) { viewState, daysViewState, selectedRange ->
+            (viewState as RangeCalendarViewState).copy(
+                daysViewState = daysViewState,
+                selectedRange = selectedRange as Selected.DayRange
+            )
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -110,6 +135,7 @@ class MainActivity : ComponentActivity() {
                     item {
                         ExamplesWithViewModels(
                             simpleCalendarViewModel = simpleCalendarViewModel,
+                            defaultRangeCalendarViewModel = defaultRangeCalendarViewModel,
                             rangeCalendarViewModel = rangeCalendarViewModel
                         )
                     }
@@ -248,18 +274,16 @@ fun Examples(defaultCalendarHelper: ICalendarHelper, rangeCalendarHelper: ICalen
 
             val newDays = rangeViewState.daysViewState.days.map { week ->
                 week.map { d ->
-                    d as RangeCalendarDay
+                    d as RangeCalendarDayViewState
                     when (d.value) {
                         newStartDate -> d.copy(
                             isSelected = true,
-                            isInRange = newEndDate != null,
-                            isFirstDayInRange = true
+                            isInRange = newEndDate != null
                         )
 
                         newEndDate -> d.copy(
                             isSelected = true,
-                            isInRange = newStartDate != null,
-                            isFirstDayInRange = false
+                            isInRange = newStartDate != null
                         )
 
                         else -> d.copy(
@@ -280,6 +304,7 @@ fun Examples(defaultCalendarHelper: ICalendarHelper, rangeCalendarHelper: ICalen
 @Composable
 fun ExamplesWithViewModels(
     simpleCalendarViewModel: BaseViewModel,
+    defaultRangeCalendarViewModel: DefaultRangeViewModel,
     rangeCalendarViewModel: RangeViewModel,
     modifier: Modifier = Modifier
 ) {
@@ -302,7 +327,7 @@ fun ExamplesWithViewModels(
             fontSize = 24.sp,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
-        DefaultCalendarWithRangeWithViewModel(rangeCalendarViewModel)
+        DefaultCalendarWithRangeWithViewModel(defaultRangeCalendarViewModel)
         Spacer(modifier = Modifier.height(20.dp))
         Text(
             "Range example",

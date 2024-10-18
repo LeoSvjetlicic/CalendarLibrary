@@ -1,16 +1,14 @@
 package com.leosvjetlicic.calendarlibrary.examples.defaultrangeexample.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.unit.dp
-import com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarDay
+import androidx.compose.ui.geometry.Size
+import com.leosvjetlicic.calendarlibrary.examples.defaultrangeexample.DefaultRangeCalendarDayViewState
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.singleday.BaseCalendarDayContent
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.singleday.CalendarDay
 import com.leosvjetlicic.calendarlibrary.ui.calendarday.singleday.ICalendarDay
@@ -25,7 +23,7 @@ fun RowScope.DefaultRangeCalendarDay(
     content: @Composable BoxScope.() -> Unit = {
         BaseCalendarDayContent(
             modifier = Modifier.align(Alignment.Center),
-            viewState = day as RangeCalendarDay,
+            viewState = day as DefaultRangeCalendarDayViewState,
             onClick = onClick
         )
     }
@@ -34,33 +32,43 @@ fun RowScope.DefaultRangeCalendarDay(
         modifier = modifier
             .weight(1f)
             .then(
-                if (day is RangeCalendarDay && day.isInRange && day.isCurrentMonth && day.isSelected) {
+                if (day is DefaultRangeCalendarDayViewState && day.isInRange && day.isCurrentMonth && day.isSelected) {
                     Modifier.drawBehind {
                         drawRect(
                             color = LightPurple.copy(0.5f),
                             topLeft = if (day.isFirstDayInRange) {
                                 Offset(
                                     center.x,
-                                    0f
+                                    10f
                                 )
                             } else {
                                 Offset(
                                     0f,
-                                    0f
+                                    10f
                                 )
                             },
-                            size = androidx.compose.ui.geometry.Size(
+                            size = Size(
                                 (size.width / 2),
-                                size.height
+                                size.height - 20
                             )
                         )
                     }
                 } else
-                    if (day is RangeCalendarDay && day.isInRange && day.isCurrentMonth) {
-                        Modifier.background(
-                            color = LightPurple.copy(alpha = 0.5f),
-                            shape = RoundedCornerShape(0.dp)
-                        )
+                    if (day is DefaultRangeCalendarDayViewState && day.isInRange && day.isCurrentMonth) {
+                        Modifier.drawBehind {
+                            drawRect(
+                                color = LightPurple.copy(0.5f),
+                                topLeft =
+                                Offset(
+                                    0f,
+                                    10f
+                                ),
+                                size = Size(
+                                    (size.width),
+                                    size.height - 20
+                                )
+                            )
+                        }
                     } else {
                         Modifier
                     }
