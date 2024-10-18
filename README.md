@@ -125,24 +125,28 @@ You can find a detailed explanation on how to use the library in the documentati
 
 ### Examples
 * **[Default Calendar Example](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultcalendar)**
+  - Calendar with minimal customizations
     * [ViewState](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultcalendar/DefaultViewState.md)
     * [Helper](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultcalendar/DefaultHelper.md)
     * [UI](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultcalendar/DefaultUI.md)
     * [ViewModel](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultcalendar/DefaultViewModel.md)
 
 * **[Simple Calendar Example](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/simplecalendar)**
+  - Calendar with customizations mainly in the UI
     * [ViewState](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/simplecalendar/SimpleViewState.md)
     * [Helper](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/simplecalendar/SimpleHelper.md)
     * [UI](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/simplecalendar/SimpleUI.md)
     * [ViewModel](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/simplecalendar/SimpleViewModel.md)
   
 * **[Range Calendar Example](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/rangecalendar)**
+  - Calendar with customizations in the features
     * [ViewState](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/rangecalendar/RangeViewState.md)
     * [Helper](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/rangecalendar/RangeHelper.md)
     * [UI](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/rangecalendar/RangeUI.md)
     * [ViewModel](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/rangecalendar/RangeViewModel.md)
 
 * **[Default Range Calendar Example](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultrangecalendar)**
+  - Calendar that looks like the `Default Calendar` but with the features as the `Range Calendar`
     * [ViewState](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultrangecalendar/DefaultRangeViewState.md)
     * [Helper](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultrangecalendar/DefaultRangeHelper.md)
     * [UI](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultrangecalendar/DefaultRangeUI.md)

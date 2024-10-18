@@ -50,13 +50,13 @@ fun SimpleWeekDays(
             verticalAlignment = alignment,
             horizontalArrangement = arrangement
         ) {
+            Spacer(
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .size(2.dp)
+                    .background(Color.Transparent)
+            )
             viewState.daysOfWeek.forEachIndexed { index, it ->
-                Spacer(
-                    modifier = Modifier
-                        .clip(CircleShape)
-                        .size(2.dp)
-                        .background(Color.Transparent)
-                )
                 Text(
                     modifier = Modifier.weight(1f),
                     text = it,
@@ -85,3 +85,4 @@ fun SimpleWeekDays(
         )
     }
 }
+

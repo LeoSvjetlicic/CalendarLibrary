@@ -5,6 +5,13 @@ This example shows the how to use the basic functionalities and UI of the librar
 The end result will look like this:
 ![plot](./res/DefaultCalendar.png)
 
+The guide is separated into these subtopics:
+
+* [ViewState](#viewstate)
+* [Helper](#helper)
+* [UI](#ui)
+* [ViewModel](#viewmodel)
+
 ## ViewState
 Firstly you need to create a ViewState that will hold the data you want to display on the calendar.
 
@@ -220,6 +227,14 @@ fun DefaultCalendarExample(
     )
 }
 ```
+
+Parameters:
+
+* `viewState` - ICalendarViewState you created
+* `modifier` - `Modifier`
+* `onHeaderAction` - function triggered on header action
+* `onDayClick` - function triggered on day click
+
 The modifiers `clipped`, and `added the border` to the `Calendar`.
 
 ## ViewModel
@@ -228,7 +243,8 @@ Now that we have our `viewState`, `helper` that generates data and the `UI`, we 
 
 You can either create a completely new ViewModel, use the one provided in the library, or you can inherit from it.
 
-The list of parameters needed to create the `BaseViewModel` looks like this:
+The list of parameters needed to create the `BaseViewModel`, provided in the library looks like
+this:
 ``` kotlin
 open class BaseViewModel(
     val helper: ICalendarHelper,
@@ -250,12 +266,25 @@ The `BaseViewModel` provides the following:
 * **onDayClick** - function that handles user's clicks on individual calendar days
 * **onHeaderAction** - function that handles user's clicks on individual header parts
 
-As said above you can inherit from it and change the default functionalities or create your own.
+A factory for the viewModel is also provided in the library so to create the ViewModel you just need
+to do the following:
+
+``` kotlin
+val simpleCalendarViewModel by viewModels<BaseViewModel> {
+      BaseViewModelFactory(
+          helper = simpleCalendarHelper,
+          selected = Selected.SingleDay(null)
+      ) { viewState, daysViewState, _ ->
+          (viewState as SimpleCalendarViewState).copy(daysViewState = daysViewState)
+      }
+  }
+```
 
 ## Conclusion
 
 In this guide, we covered the basics on how to use the library and all its parts.
 
-You can also check more complicated examples [here](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/docs/examples).
+You can also see more complicated
+examples [here](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/docs/examples).
 
 Good luck!

@@ -1,21 +1,16 @@
 package com.leosvjetlicic.calendarlibrary.examples.simpleexample
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.leosvjetlicic.calendarlibrary.examples.simpleexample.components.SimpleDays
+import com.leosvjetlicic.calendarlibrary.examples.simpleexample.components.SimpleExtraContent
 import com.leosvjetlicic.calendarlibrary.examples.simpleexample.components.SimpleHeader
 import com.leosvjetlicic.calendarlibrary.examples.simpleexample.components.SimpleWeekDays
 import com.leosvjetlicic.calendarlibrary.ui.calendar.Calendar
@@ -66,21 +61,10 @@ fun SimpleCalendarExample(
                     .height(0.3.dp)
                     .background(Color.DarkGray)
             )
-            Column(modifier = Modifier.padding(top = 12.dp)) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = "Today's date: ",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = viewState.today,
-                        fontSize = 16.sp,
-                    )
-                }
-            }
+            SimpleExtraContent(
+                today = viewState.today,
+                modifier = Modifier.padding(top = 12.dp)
+            )
         }
     )
 }

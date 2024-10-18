@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,6 +33,7 @@ fun BoxScope.SimpleDayContent(
     onClick: (LocalDate) -> Unit
 ) {
     BaseCalendarDayContent(
+        viewState = day,
         onClick = onClick,
         modifier = modifier
             .clip(CircleShape)
@@ -49,8 +49,6 @@ fun BoxScope.SimpleDayContent(
                 }
             )
             .align(Alignment.Center),
-        viewState = day,
-        shape = RoundedCornerShape(0.dp),
         selectedBackgroundColor = Color.Transparent,
         content = {
             BaseCalendarDayTextContent(
