@@ -4,8 +4,10 @@ A calendar library with fully customizable UI and helper for generating the cale
 
 **With this library you will be able to create a calendar Ui to your liking and with the exact features you want**
 
-<img src="./videos/Default.gif" width="270" height="555"/>
-<img src="./videos/DefaultRange.gif" width="270" height="555"/>
+<p float="left">
+  <img src="./videos/Default.gif" width="270" height="555" />
+  <img src="./videos/DefaultRange.gif" width="270" height="555" />
+</p>
 
 ## Features
 * **Customizable** UI components for calendars
