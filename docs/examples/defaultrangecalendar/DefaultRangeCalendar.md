@@ -1,7 +1,6 @@
 # DefaultRangeCalendar
 
-This example shows the feature customization in the library, as well as using the
-`DefaultCalendarExample` design.
+This example shows the feature customization in the library, as well as using the `DefaultCalendarExample` design.
 
 The main feature is adding a range selection in the calendar.
 
@@ -20,9 +19,7 @@ Content:
 
 ## ViewState
 
-You see the explanation of the viewStates in
-the [README.md](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/README.md/ViewStates)
-file.
+You see the explanation of the viewStates in the [README.md](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/README.md/#viewstates) file.
 
 First you need to create a new viewState that will hold the data for the range, like this:
 
@@ -35,8 +32,7 @@ data class RangeCalendarViewState(
 ) : ICalendarViewState
 ```
 
-The extra parameter is `selectedRange` that represents the selected range of days and is of
-type [Selected](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/calendarLibrary/src/main/java/com/leosvjetlicic/calendarlibrary/utils/Selected.kt).
+The extra parameter is `selectedRange` that represents the selected range of days and is of type [Selected](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/calendarLibrary/src/main/java/com/leosvjetlicic/calendarlibrary/utils/Selected.kt).
 
 Next you need to create the viewState that represents the **Day**. You can do so by inheriting from
 `ICalendarDay` like this:
@@ -96,8 +92,7 @@ Parameters:
 * **selected** - The selected date information of
   type [Selected](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/calendarLibrary/src/main/java/com/leosvjetlicic/calendarlibrary/utils/Selected.kt).
 
-It returns the `RangeCalendarViewState`, which means you need to implements its mapping in the
-function.
+It returns the `RangeCalendarViewState`, which means you need to implements its mapping in the function.
 
 Firstly you need to generate the data, like this:
 
@@ -235,14 +230,9 @@ The function looks like this:
 
 ## UI
 
-To find all the compose functions used for UI in the library, to understand their parameters and how
-they work, you can visit
-the [Composables.md](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/docs/composables/Composables.md)
-file.
+To find all the compose functions used for UI in the library, to understand their parameters and how they work, you can visit the [Composables.md](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/docs/composables/Composables.md) file.
 
-The UI is similar to
-the [DefaultCalendarExample](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/docs/examples/defaultcalendar/DefaultCalendar.md),
-except the range elements.
+The UI is similar to the [DefaultCalendarExample](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/docs/examples/defaultcalendar/DefaultCalendar.md), except the range elements.
 
 ### DefaultRangeCalendarDay
 
@@ -515,7 +505,6 @@ The result in the end is this:
 
 In this guide, we covered the basics on how to add features to a calendar.
 
-You can see more
-examples [here](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/docs/examples).
+You can see more examples [here](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/docs/examples).
 
 Good luck!

@@ -5,6 +5,7 @@ This example shows the feature customization in the library.
 The main feature here is the range selection in the calendar.
 
 The final calendar looks like this:
+
 ![plot](./res/RangeCalendar.png)
 
 Content:
@@ -17,7 +18,7 @@ Content:
 * [ViewModel](#viewmodel)
 
 ## ViewState
-You see the explanation of the viewStates in the [README.md](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/README.md/ViewStates) file.
+You see the explanation of the viewStates in the [README.md](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/README.md/#viewstates) file.
 
 First you need to create a new viewState that will hold the data for the range, like this:
 ``` kotlin
@@ -248,7 +249,7 @@ The indicator is also changed to a rectangular shape and looks like this:
 
 ![plot](./res/RangeCalendarDayContentWithIndicator.png)
 
-This is achived like so:
+This is achieved like so:
 ``` kotlin
   @Composable
 fun BoxScope.RangeCalendarDayContent(
@@ -316,8 +317,7 @@ Also you need to pass the `RangeCalendarDayContent` you created earlier as the c
 
 ### RangeCalendarDays
 
-Finally, you need to create the `RangeCalendarDays` that will put all the days in a grid that looks
-like this:
+Finally, you need to create the `RangeCalendarDays` that will put all the days in a grid that looks like this:
 
 ![plot](./res/CalendarContent.png)
 
@@ -350,8 +350,7 @@ fun RangeCalendarDays(
 }
 ```
 
-Apart from putting the elements in a `Row` you need to pass the `RangeCalendarDay` from the previous
-subtopic
+Apart from putting the elements in a `Row` you need to pass the `RangeCalendarDay` from the previous subtopic.
 
 ## ViewModel
 
@@ -368,8 +367,7 @@ class RangeViewModel(
 }
 ```
 
-Then, you need to change the `onDayClick` function, because the default functionality is for single
-date pick.
+Then, you need to change the `onDayClick` function, because the default functionality is for single date pick.
 
 The function is quite complex as you can see here:
 

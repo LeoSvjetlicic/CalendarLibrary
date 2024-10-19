@@ -3,6 +3,7 @@
 This example shows the how to use the basic functionalities and UI of the library.
 
 The end result will look like this:
+
 ![plot](./res/DefaultCalendar.png)
 
 **Content**:
@@ -74,6 +75,7 @@ Parameters:
 * **selected** - The selected date of type [Selected](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/calendarLibrary/src/main/java/com/leosvjetlicic/calendarlibrary/utils/Selected.kt).
 
 It basically maps the data you get from the `generateWeeks` and `getDaysOfWeekNames` functions to the DefaultCalendarViewState you created earlier.
+
 You call the functions like this:
 ``` kotlin
     override fun generateCalendarViewState(
@@ -141,7 +143,6 @@ This creates the CalendarWeekDaysViewState that shows the days of the week with 
 ```
 This creates the CalendarDaysViewState that will shows the days of the month from the CalendarDayViewState you created.
 
-
 Finally, the function should look like this:
 <details>
   <summary>Expand</summary>
@@ -179,7 +180,7 @@ Finally, the function should look like this:
         )
     }
   ```
-</details>`
+</details>
 
 Next you will need to create the helper and generate the data, and you can do it like this:
 
@@ -242,8 +243,7 @@ Now that we have our `viewState`, `helper` that generates data and the `UI`, we 
 
 You can either create a completely new ViewModel, use the one provided in the library, or you can inherit from it.
 
-The list of parameters needed to create the `BaseViewModel`, provided in the library looks like
-this:
+The list of parameters needed to create the `BaseViewModel`, provided in the library looks like this:
 ``` kotlin
 open class BaseViewModel(
     val helper: ICalendarHelper,
@@ -265,8 +265,7 @@ The `BaseViewModel` provides the following:
 * **onDayClick** - function that handles user's clicks on individual calendar days
 * **onHeaderAction** - function that handles user's clicks on individual header parts
 
-A factory for the viewModel is also provided in the library so to create the ViewModel you just need
-to do the following:
+A factory for the viewModel is also provided in the library so to create the ViewModel you just need to do the following:
 
 ``` kotlin
 val simpleCalendarViewModel by viewModels<BaseViewModel> {

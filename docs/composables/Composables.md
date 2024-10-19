@@ -32,6 +32,7 @@ We will explain each part of the calendar UI in the same structure as listed abo
 ## Header
 
 As seen in the image above, the header is the top part of the calendar.
+
 It allows you to show some content and interact with the calendar trough `CalendarHeaderAction`.
 
 ![plot](./res/HeaderExplanation.png)
@@ -150,9 +151,10 @@ fun BaseCalendarHeader(
 }
 ```
 We also need to pass the following
-* `onAction` - lambda function triggered in click actions.
-* `viewState` - `CalendarHeaderViewState`.
-* `modifier` - optional.
+* `onAction` - lambda function triggered in click actions
+* `viewState` - `CalendarHeaderViewState`
+* `modifier` - optional
+* 
 ``` kotlin
 @Composable
 fun BaseCalendarHeader(
@@ -195,6 +197,7 @@ The elements in the header are all optional, meaning you can choose which ones y
 
 ### CalendarHeader
 Now that we basically defined everything previously, we created the `CalendarHeader` composable function to enable **further customization** by either using modifiers, or adding your own content. 
+
 In the end we get a header that looks like this:
 ``` kotlin
 @Composable
@@ -215,7 +218,6 @@ And basically by just passing the `BaseCalendarHeader` as the **content** above,
 ![plot](./res/FinalHeader.png)
 
 Now since we created the "container" `CalendarHeader` you can add whatever content you want to show in the header, as well as the `BaseCalendarHeader`.
-
 
 ## WeekDays
 WeekDays represent the middle part of the calendar UI and show the days of the week.
@@ -289,8 +291,7 @@ fun CalendarWeekDays(
 Because it serves as a container, we can add other content to it, like **lines**, **dots**, etc., which can be seen in [this example]([Composables.md](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/docs/simplecalendar/SimpleCalendar.md)) 
 
 ## CalendarContent
-`CalendarContent` forms the core of the calendar UI, displaying the grid of days for a given month. 
-It is the largest and most interactive component of the calendar
+`CalendarContent` forms the core of the calendar UI, displaying the grid of days for a given month. It is the largest and most interactive component of the calendar
 
 It allows users to:
 * view
@@ -303,8 +304,7 @@ In the subtopics below you will see how the `CalendarContent` is created, by usi
 ![plot](./res/CalendarContent.png)
 
 ### BaseCalendarDayIndicator
-`BaseCalendarDayIndicator` is a composable function used to visually **highlight** a specific day with an indicator. In the image above, it is represented by the **purple dot**, which marks the current date.
-It is created by customizing the appearance of a Spacer composable function like so:
+`BaseCalendarDayIndicator` is a composable function used to visually **highlight** a specific day with an indicator. In the image above, it is represented by the **purple dot**, which marks the current date. It is created by customizing the appearance of a Spacer composable function like so:
 ``` kotlin
 @Composable
 fun BoxScope.BaseCalendarDayIndicator(
@@ -396,11 +396,10 @@ fun BoxScope.BaseCalendarDayTextContent(
 ```
 * The `align` modifier is used to aligns the `Text` to the center of the `BoxScope`, which allows us to not depend weather the the day has 1 or 2 digits 
 * The color is used to style the `Text` depending on whether the day is selected or not, and whether the day is in the current month or not. 
-  * Allows us to make the days not in the current month transparent
+* Allows us to make the days not in the current month transparent
   
 ### BaseCalendarDayContent
-By combining the previous two composable functions, we can create the complete content for the calendar day content.
-The `BaseCalendarDayContent` composable function is a `Box` that positions and styles the content provided.
+By combining the previous two composable functions, we can create the complete content for the calendar day content. The `BaseCalendarDayContent` composable function is a `Box` that positions and styles the content provided.
 
 It takes these parameters:
 ``` kotlin
@@ -579,6 +578,7 @@ Both the `content` and `helperContent` are set to be used in a `BoxScope` so you
 
 ### CalendarDaysRow
 `CalendarDaysRow` is a composable function that is used to display a list of days in a row. 
+
 It looks like this:
 ``` kotlin
 @Composable

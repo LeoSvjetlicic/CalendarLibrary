@@ -4,8 +4,8 @@ A calendar library with fully customizable UI and helper for generating the cale
 
 **With this library you will be able to create a calendar Ui to your liking and with the exact features you want**
 
-![plot](./videos/Default.gif)
-![plot](./videos/DefaultRange.gif)
+<img src="./videos/Default.gif" width="270" height="555"/>
+<img src="./videos/DefaultRange.gif" width="270" height="555"/>
 
 ## Features
 * **Customizable** UI components for calendars
@@ -124,33 +124,33 @@ In order to make the usage easier, the library also provides a `BaseCalendarHelp
 You can find a detailed explanation on how to use the library in the documentation links below.
 
 ### Examples
-* **[Default Calendar Example](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultcalendar)**
+* **[Default Calendar Example](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/defaultcalendar/DefaultCalendar.md)**
   - Calendar with minimal customizations
-    * [ViewState](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultcalendar/DefaultViewState.md)
-    * [Helper](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultcalendar/DefaultHelper.md)
-    * [UI](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultcalendar/DefaultUI.md)
-    * [ViewModel](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultcalendar/DefaultViewModel.md)
+    * [ViewState](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/defaultcalendar/DefaultCalendar.md/#ViewState)
+    * [Helper](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/defaultcalendar/DefaultCalendar.md/#Helper)
+    * [UI](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/defaultcalendar/DefaultCalendar.md/#UI)
+    * [ViewModel](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/defaultcalendar/DefaultCalendar.md/#ViewModel)
 
-* **[Simple Calendar Example](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/simplecalendar)**
+* **[Simple Calendar Example](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/simplecalendar/SimpleCalendar.md)**
   - Calendar with customizations mainly in the UI
-    * [ViewState](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/simplecalendar/SimpleViewState.md)
-    * [Helper](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/simplecalendar/SimpleHelper.md)
-    * [UI](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/simplecalendar/SimpleUI.md)
-    * [ViewModel](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/simplecalendar/SimpleViewModel.md)
+    * [ViewState](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/simplecalendar/SimpleCalendar.md/#ViewState)
+    * [Helper](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/simplecalendar/SimpleCalendar.md/#Helper)
+    * [UI](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/simplecalendar/SimpleCalendar.md/#UI)
+    * [ViewModel](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/simplecalendar/SimpleCalendar.md/#ViewModel)
   
-* **[Range Calendar Example](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/rangecalendar)**
+* **[Range Calendar Example](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/rangecalendar/RangeCalendar.md)**
   - Calendar with customizations in the features
-    * [ViewState](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/rangecalendar/RangeViewState.md)
-    * [Helper](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/rangecalendar/RangeHelper.md)
-    * [UI](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/rangecalendar/RangeUI.md)
-    * [ViewModel](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/rangecalendar/RangeViewModel.md)
+    * [ViewState](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/rangecalendar/RangeCalendar.md/#ViewState)
+    * [Helper](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/rangecalendar/RangeCalendar.md/#Helper)
+    * [UI](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/rangecalendar/RangeCalendar.md/#UI)
+    * [ViewModel](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/rangecalendar/RangeCalendar.md/#ViewModel)
 
-* **[Default Range Calendar Example](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultrangecalendar)**
+* **[Default Range Calendar Example](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/defaultrangecalendar/DefaultRangeCalendar.md)**
   - Calendar that looks like the `Default Calendar` but with the features as the `Range Calendar`
-    * [ViewState](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultrangecalendar/DefaultRangeViewState.md)
-    * [Helper](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultrangecalendar/DefaultRangeHelper.md)
-    * [UI](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultrangecalendar/DefaultRangeUI.md)
-    * [ViewModel](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/defaultrangecalendar/DefaultRangeViewModel.md)
+    * [ViewState](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/defaultrangecalendar/DefaultRangeCalendar.md/#ViewState)
+    * [Helper](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/defaultrangecalendar/DefaultRangeCalendar.md/#Helper)
+    * [UI](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/defaultrangecalendar/DefaultRangeCalendar.md/#UI)
+    * [ViewModel](https://github.com/LeoSvjetlicic/CalendarLibrary/tree/main/docs/examples/defaultrangecalendar/DefaultRangeCalendar.md/#ViewModel)
 
 ## Contribute
 If you have any ideas or maybe you found a bug, feel free to send a pull request or [open a issue](https://github.com/LeoSvjetlicic/CalendarLibrary/issues)
