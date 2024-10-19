@@ -40,7 +40,7 @@ class DefaultRangeCalendarHelper(
         } else {
             Selected.DayRange(null, null)
         }
-        return com.leosvjetlicic.calendarlibrary.examples.rangeexample.RangeCalendarViewState(
+        return RangeCalendarViewState(
             headerViewState = CalendarHeaderViewState(
                 currentDate = month.getDisplayName(monthStyle, locale) + " $year"
             ),

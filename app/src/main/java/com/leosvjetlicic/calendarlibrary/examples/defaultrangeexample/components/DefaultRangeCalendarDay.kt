@@ -64,7 +64,7 @@ fun RowScope.DefaultRangeCalendarDay(
                                     10f
                                 ),
                                 size = Size(
-                                    (size.width),
+                                    size.width,
                                     size.height - 20
                                 )
                             )
