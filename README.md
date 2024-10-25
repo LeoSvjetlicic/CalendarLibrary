@@ -27,7 +27,7 @@ To be able to use the library you need to add the following dependency to your p
 
 ```gradle
 dependencies {
-    implementation("io.github.leosvjetlicic:calendar-library:1.2.0")
+    implementation("io.github.leosvjetlicic:calendar-library:1.3.0")
 }
 ```
 
