@@ -14,6 +14,13 @@ sealed class Selected {
     data class SingleDay(val day: LocalDate?) : Selected()
 
     /**
+     * Represents multiple selected days.
+     *
+     * @param days Selected days, or null if no day is selected.
+     */
+    data class MultipleDays(val days: List<LocalDate>?) : Selected()
+
+    /**
      * Represents a range of selected days.
      *
      * @param startDay The start day of the range, or null if no start day is selected.

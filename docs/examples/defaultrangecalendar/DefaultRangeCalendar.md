@@ -89,8 +89,7 @@ Parameters:
 * **weekDayStyle** - The text style for formatting weekday names.
 * **monthStyle** - The text style for formatting month names.
 * **locale** - The locale for which to generate the calendar.
-* **selected** - The selected date information of
-  type [Selected](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/calendarLibrary/src/main/java/com/leosvjetlicic/calendarlibrary/utils/Selected.kt).
+* **selected** - The selected date information of type [Selected](https://github.com/LeoSvjetlicic/CalendarLibrary/blob/main/calendarLibrary/src/main/java/com/leosvjetlicic/calendarlibrary/utils/Selected.kt).
 
 It returns the `RangeCalendarViewState`, which means you need to implements its mapping in the function.
 

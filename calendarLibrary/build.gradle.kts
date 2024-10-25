@@ -61,7 +61,7 @@ afterEvaluate {
             create<MavenPublication>("release") {
                 groupId = "io.github.leosvjetlicic"
                 artifactId = "calendar-library"
-                version = "1.2.0"
+                version = "1.3.0"
                 from(components["release"])
 
                 pom {
